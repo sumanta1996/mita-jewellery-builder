@@ -1,0 +1,74 @@
+.SideContent {
+    position: fixed;
+    z-index: 500;
+    width: 320px;
+    max-width: 70%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    background-color: #ffffff;
+    padding: 32px 16px;
+    box-sizing: border-box;
+    overflow: scroll;
+    transition: transform 0.3s ease-out;
+}
+
+.SideContent table {
+    border-collapse: separate;
+  }
+  
+  .SideContent th {
+    color: white;
+  }
+  
+  .SideContent th, td {
+    width: 150px;
+    text-align: center;
+    padding: 5px;
+  }
+
+.Buttons {
+    position: fixed;
+    z-index: 500;
+    right: 5;
+}
+
+.Center {
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.Comments {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 320px;
+    height: min-content;
+    padding: 10px;
+    max-width: 70%;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.Comments input {
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+}
+
+.Comments button {
+    background-color: transparent;
+    border: none;
+    color: #5C9210;
+    padding: 10px;
+}
+
+.Comments input:hover {
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.SideContentPosition {
+    position: relative;
+}

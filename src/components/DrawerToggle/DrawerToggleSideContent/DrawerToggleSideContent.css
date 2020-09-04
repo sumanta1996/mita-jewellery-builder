@@ -1,0 +1,33 @@
+.DrawerToggleSideContent {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(#1979a9, #199da9);
+    border-radius: 0 0 0 40px;
+    position: fixed;
+    right: 10px;
+    top: 0;
+    cursor: pointer;
+    z-index: 600;
+  }
+  
+  .DrawerToggleSideContent:hover {
+    animation: onHover 0.4s linear;
+  }
+  
+  @keyframes onHover {
+      0% {
+          transform: scale(1);
+      }
+      60% {
+          transform: scale(1.1);
+      }
+      100% {
+          transform: scale(1);
+      }
+  }
+
+  @media (min-width: 500px) {
+    .DrawerToggleSideContent {
+        display: none;
+    }
+}

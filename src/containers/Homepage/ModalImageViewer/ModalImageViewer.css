@@ -1,0 +1,58 @@
+.ModalImageViewer button {
+    z-index: 500;
+}
+
+.Buttons {
+    margin: auto;
+    width: 55%;
+    display: flex;
+    text-align: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.cross {
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 30px;
+    position: fixed;
+    top: 10px;
+    left: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.cross h1 {
+    margin: auto;
+}
+
+.cross :hover {
+    color: white;
+    animation: onHover 0.4s linear;
+}
+
+.Buttons button {
+    margin-left: 10px;
+}
+
+@media(max-width: 500px) {
+    .Buttons {
+        width: fit-content;
+    }
+}
+
+@keyframes onHover {
+    0% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

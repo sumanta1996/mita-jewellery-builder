@@ -1,0 +1,10 @@
+.CommentBox {
+    width: auto;
+    height: fit-content;
+    margin-top: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 30px;
+    background-color: #d6d6da;
+    font-family: 'Open Sans', sans-serif;
+}

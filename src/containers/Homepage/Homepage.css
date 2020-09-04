@@ -1,0 +1,24 @@
+.Homepage {
+    width: fit-content;
+    height: fit-content; 
+    align-items: center;
+}
+
+.Homepage button {
+    z-index: 500;
+}
+
+.Buttons {
+    margin-top: 0;
+    margin-right: 0px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    width: 200px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: black;
+    border-radius: 5px;
+    padding: 10px;
+}

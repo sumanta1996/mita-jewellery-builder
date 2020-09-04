@@ -1,0 +1,46 @@
+/* Parts are from twitter.com */
+
+.HeartAnimation {
+  padding: 20px;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/66955/web_heart_animation.png');
+	background-repeat: no-repeat;
+	background-size: 2900%;
+  background-position: left;
+	height: 100px;
+	width: 100px;
+  margin: -50px;
+  cursor: pointer;
+  float: left;
+}
+
+.Animate {
+  animation: heart-burst .8s steps(28) forwards;
+}
+
+.LikeComment {
+  padding: 20px;
+  margin-left: 20px;
+  position: relative;
+}
+
+.LikeComment button {
+  float: right;
+  position: absolute;
+  top: -5%;
+  right: 15%;
+}
+
+@media (max-width: 500px) {
+  .LikeComment button {
+    right: 0%;
+  }
+}
+
+@keyframes heart-burst {
+	0% {
+		background-position: left
+	}
+	100% {
+		background-position: right
+	}
+}
