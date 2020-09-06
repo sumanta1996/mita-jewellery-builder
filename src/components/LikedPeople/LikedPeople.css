@@ -1,0 +1,74 @@
+.MiddleDrawer {
+    position: fixed;
+    width: 270px;
+    max-width: 70%;
+    max-height: 30%;
+    height: fit-content;
+    right: 40%;
+    top: 40%;
+    z-index: 700;
+    background-color: white;
+    padding: 10px 16px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    opacity: 1;
+    overflow-y: scroll;
+    transition: transform 0.4s ease-out;
+}
+
+.MiddleDrawer p {
+    text-align: center;
+    margin: auto;
+}
+
+.MiddleDrawer h6 {
+    font-weight: bold;
+}
+
+.Open {
+    transform: translateX(0);
+}
+
+.Close {
+    transform: translateY(-4500%);
+}
+
+  .Container {
+    width: 300px;
+    position: relative;
+    margin: 2em auto;
+  }
+  
+  .MiddleDrawer::-webkit-scrollbar {
+    width: .4em; 
+  }
+  .MiddleDrawer::-webkit-scrollbar,
+  .MiddleDrawer::-webkit-scrollbar-thumb {
+    overflow:visible;
+    border-radius: 4px;
+  }
+  .MiddleDrawer::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.2); 
+  }
+  .Cover {
+    position: absolute;
+    background: #fff;;
+    height: 100%;  
+    top: 0;
+    right: 0;
+    width: .4em;
+    -webkit-transition: all .5s;
+    opacity: 1;
+  }
+  
+  .Container:hover .Cover {
+     opacity: 0;
+    -webkit-transition: all .5s;
+  }
+
+@media(max-width: 500px) {
+    .MiddleDrawer {
+        right: 22%;
+        width: 240px;
+    }
+}

@@ -1,33 +1,58 @@
-.DrawerToggleSideContent {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(#1979a9, #199da9);
-    border-radius: 0 0 0 40px;
-    position: fixed;
-    right: 10px;
+.button {
+  border-radius: 4px;
+  background-color: black;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 70px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  position: fixed;
+  right: 45px;
+  top: 38px;
+  z-index: 600;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.overlaped {
+    z-index: 700;
     top: 0;
-    cursor: pointer;
-    z-index: 600;
-  }
-  
-  .DrawerToggleSideContent:hover {
-    animation: onHover 0.4s linear;
-  }
-  
-  @keyframes onHover {
-      0% {
-          transform: scale(1);
-      }
-      60% {
-          transform: scale(1.1);
-      }
-      100% {
-          transform: scale(1);
-      }
-  }
+    right: 220px;
+    width: 40px;
+    background-color: transparent;
+    color: black;
+    font-weight: bolder;
+}
 
   @media (min-width: 500px) {
-    .DrawerToggleSideContent {
+    .button {
         display: none;
     }
 }

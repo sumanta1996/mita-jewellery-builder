@@ -6,6 +6,7 @@ import Modal from '../Modal/Modal';
 import SpinnerComment from '../Spinner/SpinnerComment/SpinnerComment';
 import CommentBox from './CommentBox/CommentBox';
 import LikeButton from '../Button/LikeButton/LikeButton';
+import { SideToggleContext } from '../../context/sideToggleContext';
 import DrawerToggleSideContent from '../DrawerToggle/DrawerToggleSideContent/DrawerToggleSideContent';
 import Button from '../Button/Button';
 
@@ -15,9 +16,10 @@ class sideContent extends Component {
         showModal: false,
         comment: '',
         username: '',
-        showContentSide: true,
         continueClicked: false
     }
+
+    static contextType = SideToggleContext;
 
     constructor(props) {
         super(props);
@@ -76,12 +78,22 @@ class sideContent extends Component {
     }
 
     sendComments = () => {
+        const separator = '$separator';
+        const username = this.state.username === '' ? this.props.username : this.state.username;
+        let existingComment = null;
+        this.props.commentArr.map(comments => {
+            if (comments.name === username) {
+                existingComment = comments.comment;
+            }
+        });
+        existingComment = existingComment ? existingComment + separator + this.state.comment : this.state.comment;
         const data = {
             imageId: this.props.image.imageId,
-            fullName: this.state.username === '' ? this.props.username : this.state.username,
-            comment: this.state.comment
+            fullName: username,
+            comment: existingComment
         }
         this.props.sendComments(data);
+        this.setState({comment: ''});
     }
 
     continueHandler = () => {
@@ -102,42 +114,39 @@ class sideContent extends Component {
         }
     }
 
-    drawerToggleClicked = () => {
-        this.setState({ showContentSide: !this.state.showContentSide });
-    }
-
     render() {
         let content = (<div style={{ zIndex: '500' }}>
             <div className={classes.SideContent}>
-                <h3 style={{ color: 'chocolate' }}><strong>{this.props.image.title}</strong></h3>
+                <DrawerToggleSideContent />
+                <h3 style={{ color: 'chocolate', marginTop: 10 }}><strong>{this.props.image.title}</strong></h3>
                 <hr />
                 <table>
                     <thead></thead>
                     <tbody>
-                    <tr>
-                        <td><strong>Image Id:</strong></td>
-                        <td><strong>{this.props.image.id}</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Description:</strong></td>
-                        <td><strong>{this.props.image.description}</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Length:</strong></td>
-                        <td><strong>{this.props.image.length} cm</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Width:</strong></td>
-                        <td><strong>{this.props.image.width} cm</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Height:</strong></td>
-                        <td><strong>{this.props.image.height} cm</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Price:</strong></td>
-                        <td><strong>{this.props.image.price} /-</strong></td>
-                    </tr>
+                        <tr>
+                            <td><strong>Image Id:</strong></td>
+                            <td><strong>{this.props.image.id}</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Description:</strong></td>
+                            <td><strong>{this.props.image.description}</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Length:</strong></td>
+                            <td><strong>{this.props.image.length} cm</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Width:</strong></td>
+                            <td><strong>{this.props.image.width} cm</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Height:</strong></td>
+                            <td><strong>{this.props.image.height} cm</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Price:</strong></td>
+                            <td><strong>{this.props.image.price} /-</strong></td>
+                        </tr>
                     </tbody>
                     <tfoot></tfoot>
                 </table>
@@ -160,15 +169,14 @@ class sideContent extends Component {
                 {this.props.err ? <h5 style={{ color: 'red' }}>{this.props.err.message}</h5> : null}
             </div>
             {this.props.started ? <SpinnerComment /> :
-                <div className={classes.Comments} style={{ zIndex: '500' }}>
+                <div className={classes.Comments}>
                     <input type='textarea' placeholder='Write a comment' value={this.state.comment} onChange={event => this.inputChangedHandler(event, 'comment')} />
-                    <button onClick={this.sendComments}>Submit</button>
+                    <button disabled={this.props.username === '' && !this.state.continueClicked} onClick={this.sendComments}>Submit</button>
                 </div>}
         </div>)
         return (
             <div className={classes.SideContentPosition}>
-                <DrawerToggleSideContent clicked={this.drawerToggleClicked} />
-                {this.state.showContentSide ? content : null}
+                {this.context.showSideContent ? content : null}
             </div>
         )
     }

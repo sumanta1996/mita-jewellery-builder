@@ -1,19 +1,45 @@
 .DrawerToggle {
     width: 40px;
-    height: 90%;
-    display: flex;
+    height: 85%;
+    display: inline-flex;
     flex-flow: column;
-    justify-content: space-around;
     align-items: center;
     padding: 10px 0;
     box-sizing: border-box;
     cursor: pointer;
 }
 
+.Spacing {
+    justify-content: space-around;
+}
+
 .DrawerToggle div {
     width: 90%;
     height: 3px;
-    background-color: white;
+    background-color: black;
+}
+
+.MiddleToggle {
+    z-index: 150;
+    position: fixed;
+    top: 20%;
+    left: 40%;
+}
+
+.MiddleToggle div {
+    height: 3px;
+    margin-top: 10px;
+}
+
+.MiddleToggle div p {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: black;
+    position: relative;
+    top: -8px;
+    margin: auto;
+    opacity: 0.8;
 }
 
 @media (min-width: 500px) {

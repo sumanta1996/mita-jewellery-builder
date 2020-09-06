@@ -6,7 +6,8 @@ const initialState = {
     error: null,
     likes: 0,
     isLiked: false,
-    commentArr: []
+    commentArr: [],
+    likedPeople: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -46,7 +47,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 likes: 0,
                 error: null,
-                isLiked: false
+                isLiked: false,
+                likedPeople: null
             }
         case actionTypes.FETCH_LIKES_COMMENTS_SUCCESS:
             return {
@@ -54,6 +56,7 @@ const reducer = (state = initialState, action) => {
                 likes: action.likes,
                 commentArr: action.commentArr,
                 isLiked: action.isLiked, 
+                likedPeople: action.likedPeople,
                 error: null
             }
         default:

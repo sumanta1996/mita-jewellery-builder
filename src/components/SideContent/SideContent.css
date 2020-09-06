@@ -6,10 +6,10 @@
     height: 100%;
     right: 0;
     top: 0;
-    background-color: #ffffff;
+    background-color: whitesmoke;
     padding: 32px 16px;
     box-sizing: border-box;
-    overflow: scroll;
+    overflow-y: scroll;
     transition: transform 0.3s ease-out;
 }
 
@@ -39,6 +39,11 @@
     border-radius: 20px;
 }
 
+.Center ul {
+    margin: auto;
+    text-align: center;
+}
+
 .Comments {
     position: fixed;
     bottom: 0;
@@ -50,6 +55,7 @@
     background-color: #ffffff;
     box-sizing: border-box;
     text-align: center;
+    z-index: 500;
 }
 
 .Comments input {
@@ -63,6 +69,7 @@
     border: none;
     color: #5C9210;
     padding: 10px;
+    cursor: pointer;
 }
 
 .Comments input:hover {

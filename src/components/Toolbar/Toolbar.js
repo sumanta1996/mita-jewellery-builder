@@ -5,12 +5,14 @@ import Logo from '../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 
 const toolbar = props => {
+    let attachedClasses = [classes.Toolbar];
+    props.path === '/' ? attachedClasses.push(classes.ToolbarTransparent) : attachedClasses.push(classes.ToolbarNotTransparent);
     return (
-        <header className={classes.Toolbar}>
-            <DrawerToggle clicked={props.drawerToggleClicked}/>
+        <header className={attachedClasses.join(' ')}>
+            <DrawerToggle clicked={props.drawerToggleClicked} />
             <Logo />
             <nav className={classes.DesktopOnly}>
-            <NavigationItems isAuth={props.isAuth} />
+                <NavigationItems isAuth={props.isAuth} />
             </nav>
         </header>
     )

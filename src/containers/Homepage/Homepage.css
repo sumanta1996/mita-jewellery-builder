@@ -2,6 +2,7 @@
     width: fit-content;
     height: fit-content; 
     align-items: center;
+    margin: auto;
 }
 
 .Homepage button {

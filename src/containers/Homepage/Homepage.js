@@ -17,7 +17,9 @@ class Homepage extends Component {
         presentIndex: 0,
         size: 0,
         showContent: true,
-        isZoomed: false
+        isZoomed: false,
+        categoryName: null,
+        showContentSide: false,
     }
 
     componentDidMount() {
@@ -25,6 +27,13 @@ class Homepage extends Component {
             this.props.initImages(this.props.location.aboutProps);
         } else {
             this.props.history.push('/');
+        }
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if(nextProps.location.aboutProps && nextProps.location.aboutProps !== this.state.categoryName) {
+            this.props.initImages(nextProps.location.aboutProps);
+            this.setState({categoryName: nextProps.location.aboutProps});
         }
     }
 
@@ -77,6 +86,7 @@ class Homepage extends Component {
                     return <ImgViewer key={image.id}
                         url={image.urlArr[Object.keys(image.urlArr)[0]]}
                         title={image.title}
+                        price={image.price}
                         clicked={() => this.imageClickedHandler(image)} />
                 })
             }
@@ -85,14 +95,24 @@ class Homepage extends Component {
         const imageContent =
             <Auxillary>
                 <Modal show={this.state.showModal} modalClosed={this.toCloseModalHandler} isSideContent>
-                    <ModalImageViewer clicked={this.toCloseModalHandler} imageClicked={this.state.imageClicked} size={this.state.size} />
+                    <ModalImageViewer 
+                    clicked={this.toCloseModalHandler} 
+                    imageClicked={this.state.imageClicked} 
+                    size={this.state.size} 
+                    toggleSideContent={this.drawerToggleClicked}
+                    showContentSide={this.state.showContentSide} />
                 </Modal>
                 {(this.state.showModal) ?
-                    <SideContent clicked={this.clickedNext} image={this.state.imageClicked} isLiked={this.props.isLiked} username={this.props.username} /> : null}
+                    <SideContent 
+                    clicked={this.clickedNext} 
+                    image={this.state.imageClicked} 
+                    isLiked={this.props.isLiked} 
+                    username={this.props.username}
+                    showContentSide={this.state.showContentSide} /> : null}
             </Auxillary>
 
         return (
-            <div className='row'>
+            <div className='row' style={{marginTop: '100px', marginLeft: window.innerWidth < 500 ? '5%' : null}}>
                 {content}
                 {imageContent}
             </div>

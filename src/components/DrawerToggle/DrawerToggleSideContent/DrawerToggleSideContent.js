@@ -1,9 +1,17 @@
-import React from 'react';
-import classes from './DrawerToggleSideContent.css'
+import React, { useContext } from 'react';
+import classes from './DrawerToggleSideContent.css';
+import { SideToggleContext } from '../../../context/sideToggleContext';
 
 const drawerToggleSideContent = props => {
+    const sideToggleContext = useContext(SideToggleContext);
+    let attachedClasses = [classes.button];
+    sideToggleContext.showSideContent ? attachedClasses.push(classes.overlaped) : null;
+
     return (
-        <div className={classes.DrawerToggleSideContent}  onClick={props.clicked}></div>
+        <button className={attachedClasses.join(' ')}
+            onClick={() => sideToggleContext.drawerToggleHandler()}>
+            <span>{!sideToggleContext.showSideContent ? 'Info' : 'X'} </span>
+        </button>
     );
 }
 

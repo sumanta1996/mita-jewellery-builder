@@ -1,34 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import Toolbar from '../../components/Toolbar/Toolbar';
 import Auxillary from '../../hoc/Auxillary';
 import classes from './Layout.css';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import SideDrawer from '../../components/SideDrawer/SideDrawer';
+import MiddleDrawer from '../../components/MiddleDrawer/MiddleDrawer';
+import LaunchPage from '../../components/LaunchPage/LaunchPage';
 
-class Layout extends Component {
-    state = {
-        showSideDrawer : false
-    }
-    sideDrawerClosedHandler = () => {
-        this.setState({showSideDrawer : false});
-    }
+const layout = props => {
+    const [showSideDrawer, setShowSideDrawer] = useState(false);
+    const [showLoader, setShowLoader] = useState(true);
 
-    sideDrawerOpenHandler = () => {
-        this.setState({showSideDrawer : true});
+    const sideDrawerClosedHandler = () => {
+        setShowSideDrawer(false);
     }
 
-    render () {
-        return (
-            <Auxillary>
-                <Toolbar isAuth={this.props.isAuth} drawerToggleClicked={this.sideDrawerOpenHandler} />
-                <SideDrawer isAuth={this.props.isAuthenticated} closed={this.sideDrawerClosedHandler} open={this.state.showSideDrawer}/>
-                <div className={classes.Layout}>
-                    {this.props.children}
-                </div>
-            </Auxillary>
-        )
+    const sideDrawerOpenHandler = () => {
+        setShowSideDrawer(true);
     }
+
+    const content = <Auxillary>
+        {showLoader ? <LaunchPage /> : null}
+        <Toolbar path={props.history.location.pathname} isAuth={props.isAuth} drawerToggleClicked={sideDrawerOpenHandler} />
+        <SideDrawer isAuth={props.isAuthenticated} closed={sideDrawerClosedHandler} open={showSideDrawer} />
+        <MiddleDrawer path={props.history.location.pathname} />
+        {props.children}
+        {props.history.location.pathname === '/' ? <div className={classes.container}></div> : null}
+    </Auxillary>;
+
+    useEffect(() => {
+        setTimeout(() => {
+            setShowLoader(false);
+        }, 3000);
+    }, [])
+
+    return content;
 }
 
 const mapPropsToState = state => {
@@ -37,4 +44,4 @@ const mapPropsToState = state => {
     }
 }
 
-export default withRouter(connect(mapPropsToState)(Layout));
+export default withRouter(connect(mapPropsToState)(layout));

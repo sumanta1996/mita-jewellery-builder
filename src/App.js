@@ -12,21 +12,20 @@ import Categories from './containers/Homepage/Categories/Categories';
 
 class App extends Component {
 
-  
+
 
   render() {
     return (
       <div>
-        <Layout>
-          <Switch>
-            {this.props.isAuth ? <Route path='/admin/console' component={AdminConsole} /> : null}
-            <Route path='/admin' component={Auth} />
-            <Route path='/logout' component={Logout} />
-            <Route path='/categoryWise' component={Homepage} />
-            <Route path='/contactus' component={ContactUs} />
-            <Route path='/' exact component={Categories} />
-          </Switch>
-        </Layout>
+          <Layout>
+            <Switch>
+              {this.props.isAuth ? <Route path='/admin/console' component={AdminConsole} /> : null}
+              <Route path='/admin' component={Auth} />
+              <Route path='/logout' component={Logout} />
+              <Route path='/contactus' component={ContactUs} />
+              <Route path='/:id' component={Homepage} />
+            </Switch>
+          </Layout>
       </div>
     );
   }

@@ -33,12 +33,13 @@ export const fetchLikesCommentsStart = () => {
     }
 }
 
-export const fetchLikesCommentsSuccess = (likes, commentArr, isLiked) => {
+export const fetchLikesCommentsSuccess = (likes, commentArr, likedPeople, isLiked) => {
     return {
         type: actionTypes.FETCH_LIKES_COMMENTS_SUCCESS,
         likes: likes,
         commentArr: commentArr,
-        isLiked: isLiked
+        isLiked: isLiked,
+        likedPeople: likedPeople
     }
 }
 
@@ -115,9 +116,11 @@ export const fetchLikesComments = imageId => {
             let isLiked = false;
             let likes = 0;
             let commentArr = [];
+            let likedPeople = [];
             for (let key in res.data) {
                 if (res.data[key].Liked) {
                     ++ likes ;
+                    res.data[key].fullName !== '' ? likedPeople.push(res.data[key].fullName): null;
                 }
                 if(res.data[key].Comment){
                     commentArr.push({comment: res.data[key].Comment, like: res.data[key].Liked, name: res.data[key].fullName});
@@ -129,7 +132,7 @@ export const fetchLikesComments = imageId => {
                 }
                 
             }
-            dispatch(fetchLikesCommentsSuccess(likes, commentArr, isLiked));
+            dispatch(fetchLikesCommentsSuccess(likes, commentArr, likedPeople, isLiked));
         }).catch(err => console.log(err));
     }
 }

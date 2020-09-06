@@ -4,21 +4,28 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './SideDrawer.css';
 import Backdrop from '../Backdrop/Backdrop';
 import Auxillary from '../../hoc/Auxillary';
+import Categories from '../../containers/Homepage/Categories/Categories';
 
 const sideDrawer = (props) => {
-    let attachedClass = [classes.SideDrawer, classes.Close];
-    if(props.open){
-        attachedClass = [classes.SideDrawer, classes.Open];
+    const drawerHandle = props.middle ? classes.MiddleDrawer : classes.SideDrawer;
+    const closeHandle = props.middle ? classes.Close : classes.CloseSideDrawer;
+    let attachedClass = [drawerHandle, closeHandle];
+    let attachedClassTip = [classes.Tip, classes.Close];
+    if (props.open) {
+        attachedClass = [drawerHandle, classes.Open];
+        attachedClassTip = [classes.Tip, classes.Open];
     }
-    return(
+    return (
         <Auxillary>
-            <Backdrop show={props.open} clicked={props.closed}/>
+            <Backdrop show={props.open} clicked={props.closed} />
+            {props.middle ? <div className={attachedClassTip.join(' ')}></div> : null}
             <div className={attachedClass.join(' ')} onClick={props.closed}>
-                <div className={classes.Logo}>
-                    <Logo />
-                </div>
+                {props.middle ? null :
+                    <div className={classes.Logo}>
+                        <Logo />
+                    </div>}
                 <nav>
-                    <NavigationItems isAuth={props.isAuth} />
+                    {props.middle ? <Categories /> : <NavigationItems isAuth={props.isAuth} />}
                 </nav>
             </div>
         </Auxillary>

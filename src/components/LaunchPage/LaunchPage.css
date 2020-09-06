@@ -1,0 +1,73 @@
+.LaunchPage {
+    background-color: rgba(0, 0, 0, 0.98);
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 200;
+}
+
+.Image {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 200;
+}
+
+.Image img {
+    position: fixed;
+    opacity: 1;
+    top: 40%;
+    left: 45%;
+    width: 150px;
+    height: 150px;
+}
+
+@media(max-width: 500px) {
+    .Image img {
+        top: 30%;
+        left: 27%;
+    }
+}
+
+.Image img{
+     -webkit-animation: zoomeffect 1s infinite;
+     -moz-animation: zoomeffect 1s infinite;
+     animation: zoomeffect 1s infinite;
+  }
+  @-webkit-keyframes zoomeffect{
+          0%{
+              background-position:center;
+            transform:scale(1,1);
+          }
+          50%{
+              background-position:center;
+            transform:scale(2,2);
+          }
+          100%{
+              background-position:center;
+            transform:scale(1,1);
+          }
+  }
+  @keyframes zoomeffect{
+          0%{
+              background-position:center;
+            transform:scale(1,1);
+          }
+          50%{
+              background-position:center;
+            transform:scale(2,2);
+          }
+          100%{
+              background-position:center;
+            transform:scale(1,1);
+          }
+  }
+

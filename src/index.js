@@ -15,6 +15,7 @@ import imageSetReducer from './store/reducers/images';
 import authReducer from './store/reducers/auth';
 import adminConsoleReducer from './store/reducers/adminConsole';
 import usersReducer from './store/reducers/users';
+import SideToggleContextProvider from './context/sideToggleContext';
 
 const config = {
   apiKey: "AIzaSyBzpmGpErQqjFeR04n5hFnTT0f8qa-WSW0",
@@ -38,7 +39,11 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 const app = (
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <div>
+        <SideToggleContextProvider>
+          <App />
+        </SideToggleContextProvider>
+      </div>
     </BrowserRouter>
   </Provider>
 );

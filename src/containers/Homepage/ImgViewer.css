@@ -1,9 +1,7 @@
 .card{
     border-radius: 4px;
-    background: #fff;
-    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
     transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
-    padding: 20px 20px 20px 20px;
+    padding: 10px;
     cursor: pointer;
     margin-bottom: 30px;
     margin-left: 30px;
@@ -24,4 +22,15 @@
 
 .card-body {
     height: 100%;
+}
+
+.card-body h5 {
+    color: #202020b0;
+}
+
+@media(max-width : 500px) {
+    .card {
+        box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+        min-width: 110px;
+    }
 }

@@ -5,6 +5,18 @@
     padding: 10px;
     box-sizing: border-box;
     border-radius: 30px;
-    background-color: #d6d6da;
+    background-color: #edeff0;
+}
+
+.CommentBox h5 {
     font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    width: fit-content;
+}
+
+.CommentBox h6 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    width: fit-content;
 }

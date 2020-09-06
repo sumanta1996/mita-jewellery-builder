@@ -1,43 +1,29 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import * as actions from '../../../store/actions/index';
 import { connect } from 'react-redux';
 import classes from './Categories.css';
 import Spinner from '../../../components/Spinner/Spinner';
 import axios from 'axios';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
+import NavigationItem from '../../../components/NavigationItems/NavigationItem/NavigationItem';
 
-class Categories extends Component {
-    constructor(props) {
-        super(props);
-        this.props.setCategories();
-    }
+const categories = props => {
+    useEffect(() => {
+        props.setCategories();
+    }, []);
 
-    categoryClickedHandler = categoryValue => {
-        this.props.history.push({
-            pathname: '/categoryWise',
-            aboutProps: categoryValue
-        });
-    }
+    let data = null;
 
-    render() {
-        let data = <Spinner />
-        if (this.props.categories) {
-            data = this.props.categories.map(category =>
-                <div key={category.value} className='column' onClick={() => this.categoryClickedHandler(category.value)}>
-                    <div className={classes.card}>
-                        <div className="card-body">
-                            <h2 className="card-title">{category.displayValue}</h2>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-        return (
-            <div className='row' style={{ overflowY: 'scroll'}}>
-                {data}
-            </div>
+    if (props.categories) {
+        data = props.categories.map(category =>
+            <NavigationItem key={category.displayValue} link={'/' + category.displayValue} routeValue={category.displayValue}>{category.displayValue}</NavigationItem>
         )
     }
+    return (
+        <ul className={classes.Categories}>
+            {data}
+        </ul>
+    )
 }
 
 const mapPropsToState = state => {
@@ -52,4 +38,4 @@ const dispatchPropsToState = dispatch => {
     }
 }
 
-export default connect(mapPropsToState, dispatchPropsToState)(withErrorHandler(Categories, axios));
+export default connect(mapPropsToState, dispatchPropsToState)(withErrorHandler(categories, axios));

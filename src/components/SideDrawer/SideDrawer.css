@@ -9,11 +9,47 @@
     background-color: white;
     padding: 32px 16px;
     box-sizing: border-box;
-    transition: transform 0.3s ease-out;
+    transition: transform 0.4s ease-out;
 }
+
+.MiddleDrawer {
+    position: fixed;
+    width: 50%;
+    max-width: 70%;
+    height: fit-content;
+    left: 22%;
+    top: 30%;
+    z-index: 200;
+    background-color: white;
+    padding: 32px 16px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    opacity: 0.8;
+    transition: transform 0.4s ease-out;
+}
+
+.Tip {
+    z-index: 200;
+    position: fixed;
+    left: 44%;
+    top: 28.54%;
+    opacity: 0.8;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid white;
+    transition: transform 0.4s ease-out;
+  }
 
 @media (min-width: 500px) {
     .SideDrawer {
+        display: none;
+    }
+    .MiddleDrawer {
+        display: none;
+    }
+    .Tip {
         display: none;
     }
 }
@@ -23,6 +59,10 @@
 }
 
 .Close {
+    transform: translateY(-2500%);
+}
+
+.CloseSideDrawer {
     transform: translateY(-100%);
 }
 

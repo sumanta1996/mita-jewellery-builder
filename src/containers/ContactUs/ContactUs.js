@@ -4,6 +4,8 @@ import classes from './ContactUs.css';
 import test from '../../assets/test.jpg';
 import { Redirect } from 'react-router';
 import Logo from '../../components/Logo/Logo';
+import Instagram from '../../assets/instagram.svg';
+import Facebook from '../../assets/facebook.svg';
 
 class ContactUs extends Component {
     state = {
@@ -24,7 +26,7 @@ class ContactUs extends Component {
             <Modal show={this.state.showModal} modalClosed={this.toCloseModalHandler}>
                 <div className='column'>
                     <div className={classes.card}>
-                        <div className='row' style={{marginLeft: '20px'}}>
+                        <div className='row' style={{ marginLeft: '20px' }}>
                             <img
                                 src={test}
                                 className='card-img-top'
@@ -35,9 +37,14 @@ class ContactUs extends Component {
                             <hr />
                             <h3 style={{ fontSize: '24px', color: '#c2157d', fontWeight: 'bold' }}>Akkshay Mita Jewellery</h3>
                             <h4 className="card-title">Susmita Nandy</h4>
-                            <h6>Contact No. 8697872274</h6>
-
+                            <h6>Email To: susmitanandy66@gmail.com</h6>
                             <p className="card-title">Payment Options : Google Pay/ Phonepe/ Bank Transfer</p>
+                            <a target="_blank" href='https://www.instagram.com/akkshaymitajewellery/?hl=en' >
+                                <img src={Instagram} alt='Instagram' className={classes.Icons} />
+                            </a>
+                            <a target="_blank" href='https://www.facebook.com/akkshaymita' >
+                                <img src={Facebook} alt='Instagram' className={classes.Icons} />
+                            </a>
                         </div>
                     </div>
                 </div>
