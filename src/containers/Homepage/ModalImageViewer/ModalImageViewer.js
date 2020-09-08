@@ -28,27 +28,34 @@ const modalImageViewer = props => {
 
     return (
         <div className={classes.ModalImageViewer}>
-            <div className={classes.Buttons} >
+            <div className={classes.PrevButton}>
                 <button type="button" className="btn btn-light" disabled={presentIndex === 0} onClick={prevClicked}>
                     <img style={{ width: '30px', height: '30px' }} alt='Previous' src={leftArrow} />
                 </button>
+            </div>
+            <div className={classes.NextButton}>
                 <button type="button" className="btn btn-light" disabled={presentIndex === (props.size - 1)} onClick={nextClicked}>
                     <img style={{ width: '30px', height: '30px' }} alt='Next' src={rightArrow} />
                 </button>
-                <div className={classes.cross} onClick={props.clicked}>
-                    <h1>X</h1>
-                </div>
+            </div>
+            <div className={classes.cross} onClick={props.clicked}>
+                <h1>X</h1>
+            </div>
+            <div className={classes.Buttons} >
                 <DrawerToggleSideContent />
             </div>
             <img
                 src={props.imageClicked.urlArr[Object.keys(props.imageClicked.urlArr)[presentIndex]]}
                 className='card-img-top' style={{
-                    width: isZoomed ? '100%' : '80%',
-                    height: isZoomed ? '100%' : '80%',
-                    maxHeight: '600px',
+                    width: isZoomed ? '120%' : window.innerWidth < 500 ? '90%' : '100%',
+                    height: isZoomed ? '120%' : window.innerWidth < 500 ? '90%' : '100%',
+                    maxHeight: isZoomed ? '1000px' : '600px',
                     transition: isZoomed ? 'all 0.3s ease-out' : 'all 0.3s ease-in',
                     cursor: isZoomed ? 'zoom-out' : 'zoom-in',
-                    objectFit: 'cover'
+                    objectFit: 'contain',
+                    marginLeft: window.innerWidth < 500 ? null :'-13%',
+                    marginRight: window.innerWidth < 500 ? '3%' : null,
+                    marginTop: window.innerWidth < 500 ? '10px' : null
                 }}
                 alt='' onClick={() => isZoomed ? zoomOut() : zoomIn()} />
         </div>

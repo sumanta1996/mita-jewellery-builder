@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImgViewer from './ImgViewer';
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
@@ -9,35 +9,71 @@ import Modal from '../../components/Modal/Modal';
 import SideContent from '../../components/SideContent/SideContent';
 import ModalImageViewer from './ModalImageViewer/ModalImageViewer';
 
-class Homepage extends Component {
+var pagination = 0;
+const totalImagesToRenderAtOnce = 10;
 
-    state = {
-        imageClicked: null,
-        showModal: false,
-        presentIndex: 0,
-        size: 0,
-        showContent: true,
-        isZoomed: false,
-        categoryName: null,
-        showContentSide: false,
-    }
+const homepage = React.memo(props => {
 
-    componentDidMount() {
-        if (this.props.location.aboutProps) {
-            this.props.initImages(this.props.location.aboutProps);
+    const [imageClicked, setImageClicked] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [presentIndex, setPresentIndex] = useState(0);
+    const [size, setSize] = useState(0);
+    const [showContent, setShowContent] = useState(true);
+    const [showContentSide, setShowContentSide] = useState(false);
+    const [isFetching, setIsFetching] = useState(false);
+    const [updatedImages, setUpdatedImages] = useState([]);
+
+    useEffect(() => {
+        if (props.location.aboutProps) {
+            props.initImages(props.location.aboutProps);
+            pagination = 0;
         } else {
-            this.props.history.push('/');
+            props.history.push('/');
+        }
+    }, [props.location.aboutProps]);
+
+    useEffect(() => {
+        fetchItems();
+    }, [pagination, isFetching, props.images]);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [handleScroll]);
+
+    const fetchItems = () => {
+        if (pagination === 0 && !isFetching && props.images) {
+            //Gonna render for first time
+            let processImages = [];
+            setIsFetching(false);
+            props.images.map((image, index) => {
+                if (index < totalImagesToRenderAtOnce) {
+                    processImages.push(image);
+                }
+            })
+            setUpdatedImages(processImages);
+        } else if (props.images && pagination > 0 && isFetching) {
+            setIsFetching(false);
+            let processImages = [];
+            var counter = 0;
+            props.images.map((image, index) => {
+                if (index >= totalImagesToRenderAtOnce * pagination && counter < totalImagesToRenderAtOnce) {
+                    processImages.push(image);
+                    counter = counter + 1;
+                }
+            })
+            setUpdatedImages([...updatedImages, ...processImages]);
         }
     }
 
-    componentWillUpdate(nextProps, nextState) {
-        if(nextProps.location.aboutProps && nextProps.location.aboutProps !== this.state.categoryName) {
-            this.props.initImages(nextProps.location.aboutProps);
-            this.setState({categoryName: nextProps.location.aboutProps});
-        }
+    const handleScroll = () => {
+        if (document.documentElement.offsetHeight - (window.innerHeight + document.documentElement.scrollTop) > 10) return;
+        console.log('Fetching more items');
+        pagination = pagination + 1;
+        setIsFetching(true);
     }
 
-    imageClickedHandler = (image) => {
+    const imageClickedHandler = (image) => {
         let size = 0;
         for (let key in image.urlArr) {
             //console.log(image.urlArr[key]);
@@ -45,85 +81,68 @@ class Homepage extends Component {
                 size = size + 1;
             }
         }
-        this.setState({ showModal: true, imageClicked: image, presentIndex: 0, size: size });
+        setShowModal(true);
+        setImageClicked(image);
+        setPresentIndex(0);
+        setSize(size);
     }
 
-    toCloseModalHandler = () => {
-        this.setState({ showModal: false });
-    }
+    const toCloseModalHandler = () => setShowModal(false);
 
-    nextClicked = () => {
-        this.setState({ presentIndex: this.state.presentIndex + 1 });
-    }
+    const drawerToggleClicked = () => setShowContent(!showContent);
 
-    prevClicked = () => {
-        this.setState({ presentIndex: this.state.presentIndex - 1 });
-    }
+    let content = <Spinner />
+    if (props.images && updatedImages.length > 0) {
+        if (updatedImages.length === 0) {
+            content = <h1 style={{ margin: 'auto' }}>No Data Available! <Link to='/'>Click Here</Link> to go back</h1>;
+        } else {
+            content = updatedImages.map(image => {
 
-    drawerToggleClicked = () => {
-        this.setState({ showContent: !this.state.showContent });
-    }
-
-    zoomIn() {
-        this.setState({ isZoomed: true });
-    }
-
-    zoomOut() {
-        this.setState({ isZoomed: false });
-    }
-
-    render() {
-        let content = <Spinner />
-        if (this.props.images) {
-            let updatedImages = [];
-            for (let image in this.props.images) {
-                updatedImages.push(this.props.images[image]);
-            }
-            if (updatedImages.length === 0) {
-                content = <h1 style={{ margin: 'auto' }}>No Data Available! <Link to='/'>Click Here</Link> to go back</h1>;
-            } else {
-                content = updatedImages.map(image => {
-                    return <ImgViewer key={image.id}
-                        url={image.urlArr[Object.keys(image.urlArr)[0]]}
-                        title={image.title}
-                        price={image.price}
-                        clicked={() => this.imageClickedHandler(image)} />
-                })
-            }
+                return <ImgViewer key={image.id}
+                    url={image.urlArr[Object.keys(image.urlArr)[0]]}
+                    title={image.title}
+                    price={image.price}
+                    clicked={() => imageClickedHandler(image)} />
+            })
         }
-
-        const imageContent =
-            <Auxillary>
-                <Modal show={this.state.showModal} modalClosed={this.toCloseModalHandler} isSideContent>
-                    <ModalImageViewer 
-                    clicked={this.toCloseModalHandler} 
-                    imageClicked={this.state.imageClicked} 
-                    size={this.state.size} 
-                    toggleSideContent={this.drawerToggleClicked}
-                    showContentSide={this.state.showContentSide} />
-                </Modal>
-                {(this.state.showModal) ?
-                    <SideContent 
-                    clicked={this.clickedNext} 
-                    image={this.state.imageClicked} 
-                    isLiked={this.props.isLiked} 
-                    username={this.props.username}
-                    showContentSide={this.state.showContentSide} /> : null}
-            </Auxillary>
-
-        return (
-            <div className='row' style={{marginTop: '100px', marginLeft: window.innerWidth < 500 ? '5%' : null}}>
-                {content}
-                {imageContent}
-            </div>
-        );
+    }else if(props.images && props.imagesSet) {
+        content = <h1 style={{ margin: 'auto' }}>No Data Available! <Link to='/'>Click Here</Link> to go back</h1>;
     }
-}
+
+    const imageContent =
+        <Auxillary>
+            <Modal show={showModal} modalClosed={toCloseModalHandler} isSideContent>
+                <ModalImageViewer
+                    clicked={toCloseModalHandler}
+                    imageClicked={imageClicked}
+                    size={size}
+                    toggleSideContent={drawerToggleClicked}
+                    showContentSide={showContentSide} />
+            </Modal>
+            {showModal ?
+                <SideContent
+                    image={imageClicked}
+                    isLiked={props.isLiked}
+                    username={props.username}
+                    showContentSide={showContentSide} /> : null}
+        </Auxillary>
+
+    return (
+        <div className='row' style={{
+            marginTop: '100px',
+            marginLeft: window.innerWidth < 500 ? '5%' : '6.5%',
+        }}>
+            {content}
+            {imageContent}
+        </div>
+    );
+})
 
 const mapPropsToState = state => {
     return {
         images: state.images.images,
-        username: state.users.username
+        username: state.users.username,
+        imagesSet: state.images.imagesSet
     }
 }
 
@@ -133,4 +152,4 @@ const dispatchPropsToState = dispatch => {
     }
 }
 
-export default withRouter(connect(mapPropsToState, dispatchPropsToState)(Homepage));
+export default withRouter(connect(mapPropsToState, dispatchPropsToState)(homepage));

@@ -1,7 +1,7 @@
 export const UPLOAD_DONE = 'UPLOAD_DONE';
 export const SET_IMAGE_PATH = 'SET_IMAGE_PATH'; 
 
-
+export const SET_IMAGES_START = 'SET_IMAGES_START';
 export const SET_IMAGES = 'SET_IMAGES';
 export const SET_CATEGORIES = 'SET_CATEGORIES'; 
 

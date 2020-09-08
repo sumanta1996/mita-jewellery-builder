@@ -3,15 +3,33 @@
 }
 
 .Buttons {
-    margin: auto;
-    width: 55%;
-    display: flex;
+    padding: 10px;
+}
+
+.PrevButton {
+    width: 50px;
     text-align: center;
     border: 1px solid transparent;
     box-sizing: border-box;
     background-color: transparent;
     border-radius: 5px;
     padding: 10px;
+    position: fixed;
+    top: 45%;
+    left: 0;
+}
+
+.NextButton {
+    width: 50px;
+    text-align: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 10px;
+    position: fixed;
+    top: 45%;
+    right: 340px;
 }
 
 .cross {
@@ -49,6 +67,14 @@
 @media(max-width: 500px) {
     .Buttons {
         width: fit-content;
+    }
+
+    .NextButton {
+        right: 35px;
+    }
+
+    .PrevButton {
+        left: -8px;
     }
 }
 

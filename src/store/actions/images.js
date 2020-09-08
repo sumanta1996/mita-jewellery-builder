@@ -5,12 +5,20 @@ import axios from 'axios';
 export const setImages = (images) => {
     return {
         type: actionTypes.SET_IMAGES,
-        images: images
+        images: images,
+        imagesSet: true
+    }
+}
+
+export const setImagesStart = () => {
+    return {
+        type: actionTypes.SET_IMAGES_START,
     }
 }
 
 export const fetchImages = (categoryValue) => {
     return dispatch => {
+        dispatch(setImagesStart());
         const queryParams = '?orderBy="category"&equalTo="' + categoryValue+'"'
         axios.get('https://mita-jewellery.firebaseio.com/posts.json'+queryParams)
         .then(response => {

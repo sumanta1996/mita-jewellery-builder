@@ -11,8 +11,8 @@
   cursor: pointer;
   margin: 5px;
   position: fixed;
-  right: 45px;
-  top: 38px;
+  right: 45%;
+  top: 0;
   z-index: 600;
 }
 

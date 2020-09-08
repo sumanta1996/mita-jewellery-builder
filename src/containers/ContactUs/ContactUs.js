@@ -37,7 +37,7 @@ class ContactUs extends Component {
                             <hr />
                             <h3 style={{ fontSize: '24px', color: '#c2157d', fontWeight: 'bold' }}>Akkshay Mita Jewellery</h3>
                             <h4 className="card-title">Susmita Nandy</h4>
-                            <h6>Email To: susmitanandy66@gmail.com</h6>
+                            <h6>Email: susmitanandy66@gmail.com</h6>
                             <p className="card-title">Payment Options : Google Pay/ Phonepe/ Bank Transfer</p>
                             <a target="_blank" href='https://www.instagram.com/akkshaymitajewellery/?hl=en' >
                                 <img src={Instagram} alt='Instagram' className={classes.Icons} />

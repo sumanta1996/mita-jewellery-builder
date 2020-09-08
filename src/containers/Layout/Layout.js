@@ -32,7 +32,7 @@ const layout = props => {
     useEffect(() => {
         setTimeout(() => {
             setShowLoader(false);
-        }, 3000);
+        }, 1000);
     }, [])
 
     return content;
