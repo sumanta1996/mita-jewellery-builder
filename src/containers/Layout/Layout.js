@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Toolbar from '../../components/Toolbar/Toolbar';
 import Auxillary from '../../hoc/Auxillary';
 import classes from './Layout.css';

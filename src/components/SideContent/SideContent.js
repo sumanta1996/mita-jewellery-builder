@@ -85,6 +85,7 @@ class sideContent extends Component {
             if (comments.name === username) {
                 existingComment = comments.comment;
             }
+            return null;
         });
         existingComment = existingComment ? existingComment + separator + this.state.comment : this.state.comment;
         const data = {
@@ -93,7 +94,7 @@ class sideContent extends Component {
             comment: existingComment
         }
         this.props.sendComments(data);
-        this.setState({comment: ''});
+        this.setState({ comment: '' });
     }
 
     continueHandler = () => {
@@ -104,6 +105,14 @@ class sideContent extends Component {
             this.sendLike(true);
         }
         this.props.fetchLikesComments(this.props.image.imageId);
+    }
+
+    editClickHandler = () => {
+        if(this.props.username !== '') {
+            this.setState({showModal: true, continueClicked: true});    
+        }else {
+            this.setState({showModal: true});
+        }
     }
 
     modalHandler = () => {
@@ -164,7 +173,10 @@ class sideContent extends Component {
                             </ul>
                         </div>
                     </Modal> : null}
-                <p>Welcome {this.state.username === '' ? this.props.username : this.state.username}</p>
+                <div className={classes.NameEditPosition} onClick={this.editClickHandler}>
+                    <p>Welcome {this.state.username === '' ? this.props.username : this.state.username}</p>
+                    {this.state.username === '' ? null : <span className={classes.Pencil}>&#9999;</span>}
+                </div>
                 <CommentBox commentArr={this.props.commentArr} />
                 {this.props.err ? <h5 style={{ color: 'red' }}>{this.props.err.message}</h5> : null}
             </div>

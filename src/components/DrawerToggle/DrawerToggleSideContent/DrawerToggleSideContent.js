@@ -5,7 +5,9 @@ import { SideToggleContext } from '../../../context/sideToggleContext';
 const drawerToggleSideContent = props => {
     const sideToggleContext = useContext(SideToggleContext);
     let attachedClasses = [classes.button];
-    sideToggleContext.showSideContent ? attachedClasses.push(classes.overlaped) : null;
+    if(sideToggleContext.showSideContent) {
+        attachedClasses.push(classes.overlaped)
+    }
 
     return (
         <button className={attachedClasses.join(' ')}

@@ -12,7 +12,7 @@ const toolbar = props => {
         <header className={attachedClasses.join(' ')}>
             <DrawerToggle clicked={props.drawerToggleClicked} />
             <Logo />
-            {props.path !== '/' ? <SearchButton /> : null}
+            {props.path !== '/' && !props.path.includes('admin') ? <SearchButton /> : null}
             <nav className={classes.DesktopOnly}>
                 <NavigationItems isAuth={props.isAuth} />
             </nav>

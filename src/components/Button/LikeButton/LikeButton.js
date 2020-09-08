@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import classes from './LikeButton.css';
 import comment from '../../../assets/comment.png';
 import { connect } from 'react-redux';
-import Modal from '../../Modal/Modal';
-import Backdrop from '../../Backdrop/Backdrop';
 import LikedPeople from '../../LikedPeople/LikedPeople';
 
 class LikeButton extends Component {

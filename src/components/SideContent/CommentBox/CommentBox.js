@@ -8,8 +8,7 @@ const commentBox = props => {
                 console.log(comments.comment);
                 if (comments.comment.includes('$separator')) {
                     const allComments = comments.comment.split('$separator');
-                    console.log(allComments);
-                    return allComments.map(comment => <div key={comments.name + comment} className={classes.CommentBox}>
+                    return allComments.map((comment, index) => <div key={index} className={classes.CommentBox}>
                         <h5>{comments.name}</h5>
                         <h6>{comment}</h6>
                     </div>)

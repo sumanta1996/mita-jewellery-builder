@@ -1,4 +1,4 @@
-import React, { Component, useState, useContext } from 'react';
+import React, { useState } from 'react';
 import classes from './ModalImageViewer.css';
 import leftArrow from '../../../assets/leftArrow.png';
 import rightArrow from '../../../assets/rightArrow.png';

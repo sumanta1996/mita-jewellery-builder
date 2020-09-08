@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     images: null,
-    imagesSet: false
+    imagesSet: false,
+    searchedValue: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -18,6 +19,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 images: null,
                 imagesSet: false
+            }
+        case actionTypes.SET_SEARCHED_VALUE:
+            return {
+                ...state,
+                searchedValue: action.searchedValue
             }
         default:
             return state;

@@ -8,7 +8,6 @@ import AdminConsole from './containers/AdminConsole/AdminConsole';
 import { connect } from 'react-redux';
 import Logout from './containers/Logout/Logout';
 import ContactUs from './containers/ContactUs/ContactUs';
-import Categories from './containers/Homepage/Categories/Categories';
 
 class App extends Component {
 

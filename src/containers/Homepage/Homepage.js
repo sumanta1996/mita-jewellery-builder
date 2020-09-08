@@ -16,25 +16,30 @@ const homepage = React.memo(props => {
 
     const [imageClicked, setImageClicked] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const [presentIndex, setPresentIndex] = useState(0);
     const [size, setSize] = useState(0);
     const [showContent, setShowContent] = useState(true);
-    const [showContentSide, setShowContentSide] = useState(false);
     const [isFetching, setIsFetching] = useState(false);
     const [updatedImages, setUpdatedImages] = useState([]);
 
     useEffect(() => {
         if (props.location.aboutProps) {
-            props.initImages(props.location.aboutProps);
+            props.initImages(props.location.aboutProps, props.searchedValue);
             pagination = 0;
         } else {
             props.history.push('/');
         }
-    }, [props.location.aboutProps]);
+    }, [props.location.aboutProps, props.searchedValue]);
 
     useEffect(() => {
         fetchItems();
     }, [pagination, isFetching, props.images]);
+
+    const handleScroll = () => {
+        if (document.documentElement.offsetHeight - (window.innerHeight + document.documentElement.scrollTop) > 10) return;
+        console.log('Fetching more items');
+        pagination = pagination + 1;
+        setIsFetching(true);
+    }
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -50,6 +55,7 @@ const homepage = React.memo(props => {
                 if (index < totalImagesToRenderAtOnce) {
                     processImages.push(image);
                 }
+                return null;
             })
             setUpdatedImages(processImages);
         } else if (props.images && pagination > 0 && isFetching) {
@@ -61,16 +67,10 @@ const homepage = React.memo(props => {
                     processImages.push(image);
                     counter = counter + 1;
                 }
+                return null;
             })
             setUpdatedImages([...updatedImages, ...processImages]);
         }
-    }
-
-    const handleScroll = () => {
-        if (document.documentElement.offsetHeight - (window.innerHeight + document.documentElement.scrollTop) > 10) return;
-        console.log('Fetching more items');
-        pagination = pagination + 1;
-        setIsFetching(true);
     }
 
     const imageClickedHandler = (image) => {
@@ -83,7 +83,6 @@ const homepage = React.memo(props => {
         }
         setShowModal(true);
         setImageClicked(image);
-        setPresentIndex(0);
         setSize(size);
     }
 
@@ -116,15 +115,13 @@ const homepage = React.memo(props => {
                     clicked={toCloseModalHandler}
                     imageClicked={imageClicked}
                     size={size}
-                    toggleSideContent={drawerToggleClicked}
-                    showContentSide={showContentSide} />
+                    toggleSideContent={drawerToggleClicked} />
             </Modal>
             {showModal ?
                 <SideContent
                     image={imageClicked}
                     isLiked={props.isLiked}
-                    username={props.username}
-                    showContentSide={showContentSide} /> : null}
+                    username={props.username} /> : null}
         </Auxillary>
 
     return (
@@ -141,14 +138,15 @@ const homepage = React.memo(props => {
 const mapPropsToState = state => {
     return {
         images: state.images.images,
-        username: state.users.username,
-        imagesSet: state.images.imagesSet
+        imagesSet: state.images.imagesSet,
+        searchedValue: state.images.searchedValue,
+        username: state.users.username
     }
 }
 
 const dispatchPropsToState = dispatch => {
     return {
-        initImages: categoryValue => dispatch(actions.fetchImages(categoryValue))
+        initImages: (categoryValue, searchedValue) => dispatch(actions.fetchImages(categoryValue, searchedValue))
     }
 }
 

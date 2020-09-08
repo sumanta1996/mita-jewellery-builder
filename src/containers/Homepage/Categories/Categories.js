@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import * as actions from '../../../store/actions/index';
 import { connect } from 'react-redux';
 import classes from './Categories.css';
-import Spinner from '../../../components/Spinner/Spinner';
 import axios from 'axios';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import NavigationItem from '../../../components/NavigationItems/NavigationItem/NavigationItem';

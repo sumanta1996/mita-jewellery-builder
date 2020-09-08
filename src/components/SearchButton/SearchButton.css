@@ -5,17 +5,17 @@
 	padding: 0;
 }
 
-body, button, input {
+.Searchbar body, button, input {
 	font: 1em Hind, sans-serif;
 	line-height: 1.5em;
 }
-body, input {
+.Searchbar body, input {
 	color: #171717;
 }
 .Searchbar {
 	display: flex;
 }
-body {
+.Searchbar body {
 	background: #f1f1f1;
 	height: 100vh;
 }
@@ -46,7 +46,7 @@ body {
 .Searchbar {
     position: absolute;
     top: 15px;
-    right: 8%;
+    right: 20%;
 	max-width: 30em;
 }
 .Searchbar input {
@@ -133,11 +133,11 @@ body {
 	transform: translateY(1px);
 }
 
-@media screen and (prefers-color-scheme: dark) {
-	body, input {
+@media screen and (prefers-color-scheme: light) {
+	.Searchbar body, input {
 		color: #f1f1f1;
 	}
-	body {
+	.Searchbar body {
 		background: #171717;
 	}
 	.Searchbar input {

@@ -37,11 +37,13 @@
     margin: auto;
     margin-top: 20px;
     border-radius: 20px;
+    color: black;
 }
 
 .Center ul {
     margin: auto;
     text-align: center;
+    color: black;
 }
 
 .Comments {
@@ -78,4 +80,25 @@
 
 .SideContentPosition {
     position: relative;
+}
+
+.Pencil {
+    -webkit-transform: rotate(150deg);
+    display: inline-block;
+}
+
+.NameEditPosition {
+    display: flex;
+    cursor: pointer;
+    max-height: fit-content;
+    margin-bottom: -40px;
+}
+
+.NameEditPosition p {
+    max-height: fit-content;
+}
+
+.NameEditPosition span {
+    margin-bottom: 20%;
+    margin-left: 2%;
 }

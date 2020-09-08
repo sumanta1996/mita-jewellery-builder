@@ -39,7 +39,7 @@ export const auth = (email, password) => {
         };
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBzpmGpErQqjFeR04n5hFnTT0f8qa-WSW0',authData)
             .then(response => {
-                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+                const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
                 localStorage.setItem('token',response.data.idToken);
                 localStorage.setItem('expirationDate',expirationDate);
                 localStorage.setItem('userId',response.data.localId);

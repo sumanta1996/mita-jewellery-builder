@@ -1,5 +1,6 @@
 export {
-   fetchImages
+   fetchImages,
+   setSearchedValue
 } from './images';
 export {
    fetchCategories
