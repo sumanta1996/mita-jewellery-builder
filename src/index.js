@@ -15,6 +15,7 @@ import imageSetReducer from './store/reducers/images';
 import authReducer from './store/reducers/auth';
 import adminConsoleReducer from './store/reducers/adminConsole';
 import usersReducer from './store/reducers/users';
+import cartReducer from './store/reducers/cart';
 import SideToggleContextProvider from './context/sideToggleContext';
 
 const config = {
@@ -31,7 +32,8 @@ const rootReducer = combineReducers({
   images: imageSetReducer,
   auth: authReducer,
   adminConsole: adminConsoleReducer,
-  users: usersReducer
+  users: usersReducer,
+  cart: cartReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

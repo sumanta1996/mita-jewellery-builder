@@ -1,0 +1,37 @@
+.Order {
+    display: flex;
+    width: 72%;
+    height: 20%;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.Order img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.Details {
+    margin-top: 10px;
+}
+
+.Details h3 {
+    color: chocolate;
+}
+
+.Details button {
+    background-color: transparent;
+    border: none;
+    margin-top: 20px;
+    color: black;
+    cursor: pointer;
+}
+
+.Details button:hover {
+    color: blue;
+}

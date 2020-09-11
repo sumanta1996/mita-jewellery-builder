@@ -9,6 +9,7 @@ import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
 import Spinner from "../../components/Spinner/Spinner";
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import Notification from "./Notification/Notification";
 
 class AdminConsole extends Component {
   state = {
@@ -311,6 +312,7 @@ class AdminConsole extends Component {
         {entireForm}
         <p>No. of files uploaded : {this.state.length}</p>
         <Button btnType="Danger" clicked={this.reset}>Reset</Button>
+        {this.props.showNotification ? <Notification /> : null}
       </div>
     );
   }
@@ -318,7 +320,8 @@ class AdminConsole extends Component {
 
 const mapPropsToState = state => {
   return {
-    categories: state.adminConsole.categories
+    categories: state.adminConsole.categories,
+    showNotification: state.adminConsole.showNotification
   }
 }
 

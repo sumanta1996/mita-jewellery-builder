@@ -1,0 +1,62 @@
+.Orders {
+    width: 100%;
+    height: 100%;
+    margin-top: 100px;
+    margin-left: 50px;
+    overflow: auto;
+}
+
+.Summary {
+    width: 22%;
+    height: 250px;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    margin-bottom: 10px;
+    position: fixed;
+    top: 100px;
+    right: 10px;
+}
+
+.Summary button {
+    position: fixed;
+    top: 370px;
+    right: 50px;
+    width: 13%;
+}
+
+.EmptyCart {
+    width: 80%;
+    height: 80%;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    margin-top: 150px;
+    margin-left: 100px;
+}
+
+.EmptyCart img {
+    width: 20%;
+    height: 20%;
+    margin-left: 40%;
+    margin-bottom: 20px;
+}
+
+.EmptyCart p {
+    margin-left: 40%;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.EmptyCart button {
+    padding: 18px 8px;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.2);
+    width: 15%;
+    margin-left: 40%;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    background: #ff9f00;
+    font-weight: 500;
+}

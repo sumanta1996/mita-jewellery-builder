@@ -8,10 +8,11 @@ import AdminConsole from './containers/AdminConsole/AdminConsole';
 import { connect } from 'react-redux';
 import Logout from './containers/Logout/Logout';
 import ContactUs from './containers/ContactUs/ContactUs';
+import Orders from './containers/Orders/Orders';
+import OrderForm from './components/Cart/OrderForm/OrderForm';
+import Notification from './containers/AdminConsole/Notification/Notification';
 
 class App extends Component {
-
-
 
   render() {
     return (
@@ -22,6 +23,9 @@ class App extends Component {
               <Route path='/admin' component={Auth} />
               <Route path='/logout' component={Logout} />
               <Route path='/contactus' component={ContactUs} />
+              <Route path='/cart' component={Orders} />
+              <Route path='/checkout' component={OrderForm} />
+              <Route path='/orders' component={Notification} />
               <Route path='/:id' component={Homepage} />
             </Switch>
           </Layout>

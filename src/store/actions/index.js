@@ -3,7 +3,8 @@ export {
    setSearchedValue
 } from './images';
 export {
-   fetchCategories
+   fetchCategories,
+   fetchOrders
 } from './adminConsole';
 export {
    auth,
@@ -15,3 +16,9 @@ export {
    saveUsername,
    fetchLikesComments
 } from './users';
+export {
+   addToCart,
+   removeFromCart,
+   saveData,
+   saveDataFailure
+} from './cart';

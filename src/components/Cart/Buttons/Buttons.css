@@ -1,0 +1,26 @@
+.Buttons {
+    padding: 18px 8px;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.2);
+    width: 40%;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 500;
+}
+
+.Buttons img {
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+}
+
+.Cart {
+    background: #ff9f00;
+}
+
+.BuyNow {
+    background: #fb641b;
+}  

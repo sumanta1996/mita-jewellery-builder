@@ -8,7 +8,9 @@ const searchButton = props => {
     const inputRef = useRef();
 
     const searchHandler = event => {
-        setSearch(event.target.value);
+        if(!(event.target.value.includes('<') || event.target.value.includes('>'))){
+            setSearch(event.target.value);
+        }
     }
 
     useEffect(() => {

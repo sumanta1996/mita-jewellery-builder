@@ -14,8 +14,10 @@ const navigationItems = (props) => {
             </div>
             <ul className={classes.NavigationItems}>
                 <NavigationItem link="/">Home</NavigationItem>
+                <NavigationItem link="/cart">Cart</NavigationItem>
                 <NavigationItem link="/admin">Admin Console</NavigationItem>
                 {props.isAuth ? <NavigationItem link="/logout">Logout</NavigationItem> : null}
+                {props.isAuth ? <NavigationItem link="/orders">Orders</NavigationItem> : null}
                 <NavigationItem link="/contactus">Contact Us</NavigationItem>
             </ul>
         </div>
@@ -30,7 +32,7 @@ const mapPropsToState = state => {
 
 const dispatchPropsToState = dispatch => {
     return {
-        setCategories: () => dispatch(actions.fetchCategories())
+        setCategories: () => dispatch(actions.fetchCategories()),
     }
 }
 

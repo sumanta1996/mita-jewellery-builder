@@ -154,12 +154,12 @@ class sideContent extends Component {
                         </tr>
                         <tr>
                             <td><strong>Price:</strong></td>
-                            <td><strong>{this.props.image.price} /-</strong></td>
+                            <td><strong>&#x20B9; {this.props.image.price}</strong></td>
                         </tr>
                     </tbody>
                     <tfoot></tfoot>
                 </table>
-                <LikeButton toggle={this.props.like} likes={this.props.likes} clicked={this.likedHandler} />
+                <LikeButton toggle={this.props.like} likes={this.props.likes} clicked={this.likedHandler} image={this.props.image} />
                 {this.state.showModal ?
                     <Modal show={this.state.showModal} darker modalClosed={this.modalHandler}>
                         <div className={classes.Center}>
