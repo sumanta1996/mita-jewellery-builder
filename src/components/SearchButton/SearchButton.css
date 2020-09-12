@@ -44,9 +44,9 @@
 	outline: transparent;
 }
 .Searchbar {
-    position: absolute;
-    top: 15px;
-    right: 20%;
+	position: relative;
+    top: -9px;
+    right: -300px;
 	max-width: 30em;
 	z-index: -10;
 }
@@ -156,6 +156,14 @@
 
 @media(max-width: 500px) {
     .Searchbar {
-        right: 20%;
-    }
+        position: absolute;
+    	top: 95px;
+    	right: 15px;
+	}
+	
+	.Searchbar,
+	.Searchbar input:focus,
+	.Searchbar input:valid  {
+		width: 85%;
+	}
 }

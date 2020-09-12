@@ -1,25 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../../store/actions/index';
 import EachNotification from './EachNotification/EachNotification';
 import classes from './Notification.css'
 
 const notification = props => {
-    useEffect(() => {
-        props.fetchOrders();
-    }, []);
-    
-    let content = <div>
+    let content = <div className={classes.Notification}>
         <h1>You are not authorized to access this feature.</h1></div>
     if (props.isAuth) {
+        const orders = [...props.orders];
         content = <div className={classes.Notification}>
-            {props.orders.map(order => {
-                return <EachNotification order={order} />
-            })}
+            {orders.reverse().map(order => <EachNotification key={order.id} order={order} />)}
         </div>
     }
 
-    //console.log(props.orders)
     return content;
 }
 
@@ -30,10 +23,4 @@ const mapPropsToState = state => {
     }
 }
 
-const dispatchPropsToState = dispatch => {
-    return {
-        fetchOrders: () => dispatch(actions.fetchOrders())
-    }
-}
-
-export default connect(mapPropsToState, dispatchPropsToState)(notification);
+export default connect(mapPropsToState)(notification);

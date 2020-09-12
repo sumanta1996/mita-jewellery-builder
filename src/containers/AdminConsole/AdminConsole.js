@@ -308,7 +308,7 @@ class AdminConsole extends Component {
       </form>
     }
     return (
-      <div style={{ textAlign: 'center' }}>
+      <div className={classes.EntirePage}>
         {entireForm}
         <p>No. of files uploaded : {this.state.length}</p>
         <Button btnType="Danger" clicked={this.reset}>Reset</Button>

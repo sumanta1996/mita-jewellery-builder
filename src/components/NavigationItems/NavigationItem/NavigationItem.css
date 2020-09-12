@@ -18,6 +18,15 @@
     color: #40A4C8;
 }
 
+.NotificationBall {
+    width: 10px;
+    height: 10px;
+    border-radius: 100px;
+    background: red;
+    margin-bottom: 20px;
+    margin-right: -10px;
+}
+
 @media(min-width : 500px) {
     .NavigationItem {
         margin: 0;
@@ -39,6 +48,7 @@
     .NavigationItem a:active,
     .NavigationItem a.active {
         border-bottom: 4px solid #40A4C8;
-        color: goldenrod;
+        color: rgb(192, 50, 25);
+        font-weight: bold;
     }
 }

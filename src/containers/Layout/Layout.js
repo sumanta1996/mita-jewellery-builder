@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import SideDrawer from '../../components/SideDrawer/SideDrawer';
 import MiddleDrawer from '../../components/MiddleDrawer/MiddleDrawer';
 import LaunchPage from '../../components/LaunchPage/LaunchPage';
+import * as actions from '../../store/actions/index';
 
 const layout = props => {
     const [showSideDrawer, setShowSideDrawer] = useState(false);
@@ -23,11 +24,17 @@ const layout = props => {
     const content = <Auxillary>
         {showLoader ? <LaunchPage /> : null}
         <Toolbar path={props.history.location.pathname} isAuth={props.isAuth} drawerToggleClicked={sideDrawerOpenHandler} />
-        <SideDrawer isAuth={props.isAuthenticated} closed={sideDrawerClosedHandler} open={showSideDrawer} />
+        <SideDrawer isAuth={props.isAuth} closed={sideDrawerClosedHandler} open={showSideDrawer} />
         <MiddleDrawer path={props.history.location.pathname} />
         {props.children}
         {props.history.location.pathname === '/' ? <div className={classes.container}></div> : null}
     </Auxillary>;
+
+    useEffect(() => {
+        if(props.isAuth) {
+            props.fetchOrders();
+        }
+    }, [props.history.location.pathname]);
 
     useEffect(() => {
         setTimeout(() => {
@@ -44,4 +51,10 @@ const mapPropsToState = state => {
     }
 }
 
-export default withRouter(connect(mapPropsToState)(layout));
+const dispatchPropsToState = dispatch => {
+    return {
+        fetchOrders: () => dispatch(actions.fetchOrders())
+    }
+}
+
+export default withRouter(connect(mapPropsToState, dispatchPropsToState)(layout));

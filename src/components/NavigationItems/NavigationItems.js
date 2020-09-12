@@ -14,10 +14,10 @@ const navigationItems = (props) => {
             </div>
             <ul className={classes.NavigationItems}>
                 <NavigationItem link="/">Home</NavigationItem>
-                <NavigationItem link="/cart">Cart</NavigationItem>
+                {window.innerWidth > 500 ? <NavigationItem link="/cart">Cart</NavigationItem> : null}
                 <NavigationItem link="/admin">Admin Console</NavigationItem>
                 {props.isAuth ? <NavigationItem link="/logout">Logout</NavigationItem> : null}
-                {props.isAuth ? <NavigationItem link="/orders">Orders</NavigationItem> : null}
+                {props.isAuth ? <NavigationItem isNewOrder={props.isNewOrder} link="/orders">Orders</NavigationItem> : null}
                 <NavigationItem link="/contactus">Contact Us</NavigationItem>
             </ul>
         </div>
@@ -26,7 +26,8 @@ const navigationItems = (props) => {
 
 const mapPropsToState = state => {
     return {
-        categories: state.adminConsole.categories
+        categories: state.adminConsole.categories,
+        isNewOrder: state.adminConsole.isNewOrder
     }
 }
 

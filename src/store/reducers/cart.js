@@ -38,6 +38,11 @@ const reducer = (state = initialState, action) => {
                 isLoading: false,
                 success: false,
             }
+        case actionTypes.CLEAR_CART: 
+        return {
+            ...state,
+            images: []
+        }
         default:
             return state;
     }

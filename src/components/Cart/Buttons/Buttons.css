@@ -24,3 +24,10 @@
 .BuyNow {
     background: #fb641b;
 }  
+
+
+@media(max-width: 500px) {
+    .Buttons {
+        padding: 10px 8px;
+    }
+}

@@ -17,6 +17,8 @@ import adminConsoleReducer from './store/reducers/adminConsole';
 import usersReducer from './store/reducers/users';
 import cartReducer from './store/reducers/cart';
 import SideToggleContextProvider from './context/sideToggleContext';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const config = {
   apiKey: "AIzaSyBzpmGpErQqjFeR04n5hFnTT0f8qa-WSW0",
@@ -34,9 +36,18 @@ const rootReducer = combineReducers({
   adminConsole: adminConsoleReducer,
   users: usersReducer,
   cart: cartReducer
-})
+});
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+const persistConfig = {
+  key: 'cart',
+  storage: storage,
+  whitelist: ['cart', 'auth', 'adminConsole']
+};
+
+const pReducer = persistReducer(persistConfig, rootReducer);
+
+const store = createStore(pReducer, composeEnhancers(applyMiddleware(thunk)));
+persistStore(store);
 
 const app = (
   <Provider store={store}>

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import Spinner from '../../Spinner/Spinner';
 import checkmarkSuccess from '../../../assets/checkmarkSuccess.svg';
-import { data } from 'autoprefixer';
 
 class OrderForm extends Component {
     state = {
@@ -193,9 +192,14 @@ class OrderForm extends Component {
             address: this.state.controls.address.value,
             totalPrice: this.props.history.location.aboutProps.totalPrice,
             images: this.props.history.location.aboutProps.data,
-            delivered: false
+            delivered: false,
+            date: new Date().toLocaleDateString()
         }
         this.props.saveData(orderData);
+        //Set it on the basis of success 
+        if(this.props.history.location.aboutProps.clearCart) {
+            this.props.clearCart();
+        }
     }
 
     render() {
@@ -207,38 +211,18 @@ class OrderForm extends Component {
             })
         }
         if (this.props.success) {
-            setTimeout(() => this.props.timeoutFeature(), 3000)
+            setTimeout(() => {
+                this.props.timeoutFeature();
+                this.props.history.push('/');
+            }, 3000);
         }
 
         return (
             <div className={classes.totalPage}>
-                <div className={classes.OrderForm}>
-                    <h3><strong>Billing Details</strong></h3>
-                    <hr />
-                    {this.state.dataExists ? <div>
-                        <p>Is this you?</p>
-                        <button onClick={() => this.setState({dataExists: false, formIsValid: true })}>Yes</button>
-                        <button onClick={this.resetData}>No</button>
-                    </div> : null}
-                    {orderFormArray.map(formElement => <Input key={formElement.name}
-                        elementType={formElement.config.elementType}
-                        elementConfig={formElement.config.elementConfig}
-                        invalid={!formElement.config.valid}
-                        shouldValidate={formElement.config.validation ? true : false}
-                        value={formElement.config.value}
-                        touched={formElement.config.touched}
-                        changed={event => this.inputChangedHandler(event, formElement.name)} />
-                    )}
-                    {this.props.isLoading ? <Spinner /> : <button disabled={!(this.state.formIsValid)} onClick={this.submitHandler}>PLACE ORDER</button>}
-                    {this.props.success ? <div className={classes.Success}>
-                        <img src={checkmarkSuccess} alt='' />
-                        <p>Your order has been placed succcesfully.</p>
-                    </div> : null}
-                </div>
                 <div className={classes.Summary}>
                     <h5><strong>Price Details</strong></h5>
                     <hr />
-                    <table>
+                    <table className={classes.Table}>
                         <thead></thead>
                         <tbody>
                             <tr>
@@ -262,6 +246,29 @@ class OrderForm extends Component {
                         </tfoot>
                     </table>
                 </div>
+                <div className={classes.OrderForm}>
+                    <h3><strong>Billing Details</strong></h3>
+                    <hr />
+                    {this.state.dataExists ? <div>
+                        <p>Is this you?</p>
+                        <button onClick={() => this.setState({dataExists: false, formIsValid: true })}>Yes</button>
+                        <button onClick={this.resetData}>No</button>
+                    </div> : null}
+                    {orderFormArray.map(formElement => <Input key={formElement.name}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        invalid={!formElement.config.valid}
+                        shouldValidate={formElement.config.validation ? true : false}
+                        value={formElement.config.value}
+                        touched={formElement.config.touched}
+                        changed={event => this.inputChangedHandler(event, formElement.name)} />
+                    )}
+                    {this.props.isLoading ? <Spinner /> : <button disabled={!(this.state.formIsValid)} onClick={this.submitHandler}>PLACE ORDER</button>}
+                    {this.props.success ? <div className={classes.Success}>
+                        <img src={checkmarkSuccess} alt='' />
+                        <p>Your order has been placed succcesfully.</p>
+                    </div> : null}
+                </div>
             </div>
         )
     }
@@ -277,7 +284,8 @@ const mapPropsToState = state => {
 const dispatchPropsToState = dispatch => {
     return {
         saveData: orderData => dispatch(actions.saveData(orderData)),
-        timeoutFeature: () => dispatch(actions.saveDataFailure())
+        timeoutFeature: () => dispatch(actions.saveDataFailure()),
+        clearCart: () => dispatch(actions.clearCartData())
     }
 }
 

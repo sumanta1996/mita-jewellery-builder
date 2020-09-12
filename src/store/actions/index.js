@@ -20,5 +20,6 @@ export {
    addToCart,
    removeFromCart,
    saveData,
-   saveDataFailure
+   saveDataFailure,
+   clearCartData
 } from './cart';

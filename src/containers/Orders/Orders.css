@@ -60,3 +60,52 @@
     background: #ff9f00;
     font-weight: 500;
 }
+
+@media(max-width: 500px) {
+    .EmptyCart {
+        width: 90%;
+        margin-left: 20px
+    }
+
+    .EmptyCart button {
+        padding: 10px 8px;
+        width: 35%;
+        margin-left: 33%;
+        font-weight: 500;
+    }
+
+    .EmptyCart p {
+        margin-left: 30%;
+    }
+
+    .Orders {
+        margin-left: 15px;
+    }
+
+    .Summary {
+        width: 38%;
+        height: 270px;
+        right: 20px;
+        top: 105px
+    }
+
+    .Summary h5 {
+        font-size: 17px
+    }
+    
+    .Summary button {
+        position: fixed;
+        top: 393px;
+        right: 30px;
+        width: 25%;
+    }
+
+    .Table {
+        font-size: 15px;
+        line-height: 15px;
+    }
+
+    .Table tfoot {
+        margin-top: -10px;
+    }
+}

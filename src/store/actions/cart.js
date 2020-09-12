@@ -33,6 +33,12 @@ export const saveDataFailure = () => {
     }
 }
 
+export const clearCartData = () => {
+    return {
+        type: actionTypes.CLEAR_CART
+    }
+}
+
 export const saveData = orderData => {
     return dispatch => {
         dispatch(saveDataStart());

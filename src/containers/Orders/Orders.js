@@ -23,7 +23,8 @@ const orders = props => {
             aboutProps: {
                 totalPrice: totalPrice,
                 size: props.images.length,
-                data: props.images
+                data: props.images,
+                clearCart: true
             }
         })
     }
@@ -43,7 +44,7 @@ const orders = props => {
             <div className={classes.Summary}>
                 <h5><strong>Price Details</strong></h5>
                 <hr />
-                <table>
+                <table className={classes.Table}>
                     <thead></thead>
                     <tbody>
                         <tr>

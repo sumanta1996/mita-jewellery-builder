@@ -8,10 +8,17 @@ export const setCategories = (categories) => {
     }
 }
 
-export const setOrders = orders => {
+export const setOrders = (orders, isNewOrder) => {
     return {
         type: actionTypes.SET_ORDERS,
-        orders: orders
+        orders: orders,
+        isNewOrder: isNewOrder
+    }
+}
+
+export const setOrdersStart = () => {
+    return {
+        type: actionTypes.SET_ORDERS_START
     }
 }
 
@@ -30,26 +37,37 @@ export const fetchCategories = () => {
 
 export const fetchOrders = () => {
     return (dispatch, getState) => {
-        if(!getState().adminConsole.showNotification) {
+            dispatch(setOrdersStart());
             axios.get('https://mita-jewellery.firebaseio.com/orders.json')
             .then(response => {
-                const orders = [];
+                const orders = [...getState().adminConsole.orders];
+                let isNewOrder = false;
                 console.log(response.data);
                 for(let key in response.data) {
-                    const order = {
-                        id: key,
-                        customerName: response.data[key].customerName,
-                        email: response.data[key].email,
-                        mobileNum: response.data[key].mobilNum,
-                        address: response.data[key].address,
-                        images: response.data[key].images,
-                        totalPrice: response.data[key].totalPrice,
-                        delivered: response.data[key].delivered
+                    let flag = false;
+                    for(let key1 in orders) {
+                        if(orders[key1].id === key) {
+                            flag = true;
+                            break;
+                        }
                     }
-                    orders.push(order);
+                    if(!flag) {
+                        const order = {
+                            id: key,
+                            customerName: response.data[key].customerName,
+                            email: response.data[key].email,
+                            mobileNum: response.data[key].mobilNum,
+                            address: response.data[key].address,
+                            images: response.data[key].images,
+                            totalPrice: response.data[key].totalPrice,
+                            delivered: response.data[key].delivered,
+                            date: response.data[key].date
+                        }
+                        orders.push(order);
+                        isNewOrder = true;
+                    }
                 }
-                dispatch(setOrders(orders));
+                dispatch(setOrders(orders, isNewOrder));
             }).catch(error => console.log(error));
-        }
     }
 }

@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     categories : null,
-    orders: []
+    orders: [],
+    isNewOrder: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -12,10 +13,16 @@ const reducer = (state = initialState, action) => {
             ...state,
             categories: action.categories
         }
+    case actionTypes.SET_ORDERS_START: 
+        return {
+            ...state,
+            isNewOrder: false
+        }
     case actionTypes.SET_ORDERS:
         return {
             ...state,
-            orders: action.orders
+            orders: action.orders,
+            isNewOrder: action.isNewOrder
         }
     default:
         return state;

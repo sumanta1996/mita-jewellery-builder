@@ -7,6 +7,7 @@ export const SET_IMAGES = 'SET_IMAGES';
 export const SET_CATEGORIES = 'SET_CATEGORIES'; 
 
 export const SET_ORDERS = 'SET_ORDERS';
+export const SET_ORDERS_START = 'SET_ORDERS_START';
 export const ORDER_DELIVERED = 'ORDER_DELIVERED';
 export const AUTH_START = 'AUTH_START';
 export const AUTH_FAIL = 'AUTH_FAIL';
@@ -28,3 +29,4 @@ export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const SAVE_DATA_START = 'SAVE_DATA_START';
 export const SAVE_DATA_SUCCESS = 'SAVE_DATA_SUCCESS';
 export const SAVE_DATA_FAILURE = 'SAVE_DATA_FAILURE';
+export const CLEAR_CART = 'CLEAR_CART';

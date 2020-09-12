@@ -1,6 +1,6 @@
 .AdminConsole {
     margin: 100px auto;
-    width: 80%;
+    width: 90%;
     text-align: center;
     box-shadow:  0 2px 3px #ccc;
     border: 1px solid #eee;
@@ -15,9 +15,13 @@
     -o-transition: all 0.30s ease-in-out;
     outline: none;
     padding: 3px 0px 3px 3px;
-    margin: 5px 1px 3px 0px;
+    margin: -16px 0px -14px 0px;
     border: 1px solid #DDDDDD;
     display: block;
+}
+
+.AdminConsole label {
+    margin-bottom: 20px;
 }
 
 .AdminConsole input:hover {
@@ -27,8 +31,28 @@
     border: 1px solid rgba(81, 203, 238, 1);
   }
 
+.EntirePage {
+    text-align: center;
+}
+
+.EntirePage p {
+    margin-top: -50px;
+}
+
 @media(min-width: 600px) {
     .AdminConsole {
         width: 500px;
+    }
+
+    .AdminConsole input {
+        margin: 5px 1px 3px 0px;
+    }
+
+    .AdminConsole label {
+        margin-bottom: none;
+    }
+
+    .EntirePage p {
+        margin-top: none;
     }
 }

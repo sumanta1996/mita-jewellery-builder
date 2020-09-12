@@ -54,6 +54,10 @@ const eachNotification = props => {
                         <td><strong>Total Price:</strong></td>
                         <td>&#x20B9; {props.order.totalPrice}</td>
                     </tr>
+                    <tr>
+                        <td><strong>ORDER PLACED ON: </strong></td>
+                        <td><strong>{props.order.date}</strong></td>
+                    </tr>
                 </tbody>
                 <tfoot></tfoot>
             </table>

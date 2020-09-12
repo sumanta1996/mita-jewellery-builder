@@ -8,6 +8,8 @@ import Auxillary from '../../hoc/Auxillary';
 import Modal from '../../components/Modal/Modal';
 import SideContent from '../../components/SideContent/SideContent';
 import ModalImageViewer from './ModalImageViewer/ModalImageViewer';
+import SearchButton from '../../components/SearchButton/SearchButton';
+import classes from './Homepage.css';
 
 var pagination = 0;
 const totalImagesToRenderAtOnce = 10;
@@ -104,7 +106,7 @@ const homepage = React.memo(props => {
                     clicked={() => imageClickedHandler(image)} />
             })
         }
-    }else if(props.images && props.imagesSet) {
+    } else if (props.images && props.imagesSet) {
         content = <h1 style={{ margin: 'auto' }}>No Data Available! <Link to='/'>Click Here</Link> to go back</h1>;
     }
 
@@ -125,12 +127,15 @@ const homepage = React.memo(props => {
         </Auxillary>
 
     return (
-        <div className='row' style={{
-            marginTop: '100px',
-            marginLeft: window.innerWidth < 500 ? '5%' : '6.5%',
-        }}>
-            {content}
-            {imageContent}
+        <div className={classes.Search}>
+            <SearchButton />
+            <div className='row' style={{
+                marginTop: window.innerWidth < 500 ? '150px' : '100px',
+                marginLeft: window.innerWidth < 500 ? '5%' : '6.5%',
+            }}>
+                {content}
+                {imageContent}
+            </div>
         </div>
     );
 })

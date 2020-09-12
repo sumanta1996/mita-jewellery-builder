@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './LikeButton.css';
 import comment from '../../../assets/comment.png';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import LikedPeople from '../../LikedPeople/LikedPeople';
 import Buttons from '../../Cart/Buttons/Buttons';
 import * as actions from '../../../store/actions/index';
@@ -15,11 +16,11 @@ class LikeButton extends Component {
     componentDidMount() {
         var flag = false;
         this.props.images.map(image => {
-            if(image.imageId === this.props.image.imageId) {
+            if (image.imageId === this.props.image.imageId) {
                 flag = true;
             }
         })
-        flag ? this.setState({addToCart: true}): null;
+        flag ? this.setState({ addToCart: true }) : null;
     }
 
     showLikedPeopleHandler = () => {
@@ -32,7 +33,22 @@ class LikeButton extends Component {
 
     addToCartHandler = () => {
         this.props.addToCart(this.props.image);
-        this.setState({addToCart: true});
+        this.setState({ addToCart: true });
+    }
+
+    buyNowHandler = () => {
+        console.log(this.props);
+        const images = [];
+        images.push(this.props.image);
+        this.props.history.push({
+            pathname: '/checkout',
+            aboutProps: {
+                totalPrice: this.props.image.price,
+                size: 1,
+                data: images,
+                clearCart: false
+            }
+        });
     }
 
     render() {
@@ -44,13 +60,13 @@ class LikeButton extends Component {
         return (
             <div className={classes.LikeButton}>
                 <LikedPeople open={this.state.showLikedPeople} closed={this.closeLikedPeopleHandler} >
-                    <h6 style={{color: '#1aa3ff'}}>All</h6>
-                    <hr/>
+                    <h6 style={{ color: '#1aa3ff' }}>All</h6>
+                    <hr />
                     {this.props.likedPeople ? this.props.likedPeople.map(person => <h6 key={person}>{person}</h6>) : ''}
                 </LikedPeople>
                 <div className='row'>
                     <Buttons cart clicked={this.addToCartHandler} added={this.state.addToCart}>{this.state.addToCart ? 'Added' : 'Add To Cart'}</Buttons>
-                    <Buttons>Buy Now</Buttons>
+                    <Buttons clicked={this.buyNowHandler}>Buy Now</Buttons>
                 </div>
                 <hr />
                 <div className={classes.LikeComment}>
@@ -61,7 +77,7 @@ class LikeButton extends Component {
                     </button>
                 </div>
                 <hr />
-                <p onClick={this.showLikedPeopleHandler}>View Likes</p> 
+                <p onClick={this.showLikedPeopleHandler}>View Likes</p>
             </div>
         )
     }
@@ -80,4 +96,4 @@ const dispatchPropsToState = dispatch => {
     }
 }
 
-export default connect(mapPropsToState, dispatchPropsToState)(LikeButton);
+export default withRouter(connect(mapPropsToState, dispatchPropsToState)(LikeButton));

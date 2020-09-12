@@ -41,6 +41,12 @@
     background: #ff9f00;
 }
 
+.Each button:disabled,
+.Each button[disabled] {
+    background-color: #cccccc;
+    color: #666666;
+}
+
 .Images {
     overflow-x: auto;
     display: flex;
@@ -65,5 +71,11 @@
     .Each {
         width: 80%;
         height: 25%;
+    }
+
+    .Each button {
+        padding: 10px 8px;
+        width: 60%;
+        margin-left: 19%;
     }
 }
