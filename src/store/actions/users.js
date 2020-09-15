@@ -120,7 +120,7 @@ export const fetchLikesComments = imageId => {
             for (let key in res.data) {
                 if (res.data[key].Liked) {
                     ++ likes ;
-                    res.data[key].fullName !== '' ? likedPeople.push(res.data[key].fullName): null;
+                    if(res.data[key].fullName !== '') likedPeople.push(res.data[key].fullName);
                 }
                 if(res.data[key].Comment){
                     commentArr.push({comment: res.data[key].Comment, like: res.data[key].Liked, name: res.data[key].fullName});

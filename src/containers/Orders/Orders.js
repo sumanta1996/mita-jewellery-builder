@@ -12,6 +12,7 @@ const orders = props => {
         var totalPrice = 0;
         props.images.map(image => {
             totalPrice = totalPrice + (+image.price);
+            return null;
         });
         setTotalPrice(totalPrice);
 

@@ -3,7 +3,8 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     categories : null,
     orders: [],
-    isNewOrder: false
+    isNewOrder: false,
+    nextId: 'AMJ 1'
 }
 
 const reducer = (state = initialState, action) => {
@@ -11,7 +12,12 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_CATEGORIES: 
         return {
             ...state,
-            categories: action.categories
+            categories: action.categories,
+        }
+    case actionTypes.SET_NEXT_ID:
+        return {
+            ...state,
+            nextId: action.nextId
         }
     case actionTypes.SET_ORDERS_START: 
         return {

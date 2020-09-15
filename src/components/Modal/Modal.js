@@ -30,7 +30,7 @@ class Modal extends Component {
                             backgroundColor: this.props.darker ? "white" : 'transparent',
                             width: this.props.darker ? '300px' : null,
                             height: this.props.darker ? '120px' : null,
-                            left: this.props.darker ? '40%' : null,
+                            left: this.props.darker ? window.innerWidth < 500 ? '12%' : '40%' : null,
                             top: this.props.darker ? '40%' : null,
                             borderRadius: this.props.darker ? '10px' : null
                         }}>

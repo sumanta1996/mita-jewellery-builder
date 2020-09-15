@@ -14,19 +14,6 @@ import Notification from "./Notification/Notification";
 class AdminConsole extends Component {
   state = {
     controls: {
-      imageId: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'text',
-          placeholder: 'Your image id'
-        },
-        value: '',
-        validation: {
-          required: true,
-        },
-        valid: false,
-        touched: false
-      },
       length: {
         elementType: 'input',
         elementConfig: {
@@ -164,7 +151,7 @@ class AdminConsole extends Component {
       url: this.state.avatarURL,
       title: this.state.controls.title.value,
       details: this.state.controls.imageDescription.value,
-      id: this.state.controls.imageId.value,
+      id: this.props.nextId,
       category: this.state.controls.Categories.value,
       length: this.state.controls.length.value,
       width:  this.state.controls.width.value,
@@ -172,7 +159,7 @@ class AdminConsole extends Component {
       price: this.state.controls.price.value,
     }
     axios.post('https://mita-jewellery.firebaseio.com/posts.json', data)
-      .then(res => {
+      .then(res => {  
         this.setState({ uploaded: true });
       }).catch(err => {
         this.setState({ error: err });
@@ -180,6 +167,7 @@ class AdminConsole extends Component {
   }
 
   reset = () => {
+    this.props.setCategories();
     this.setState({
       avatar: "",
       isUploading: false,
@@ -200,6 +188,9 @@ class AdminConsole extends Component {
 
     if (rules.required) {
       isValid = value.trim() !== '' && isValid;
+      if(value.includes('<') || value.includes('>')) {
+        isValid = false;
+      }
     }
 
     if (rules.minLength) {
@@ -260,13 +251,11 @@ class AdminConsole extends Component {
       });
       return true;
     } else {
-      //console.log('Here 2', this.state.controls.Categories.elementConfig.options);
       return true;
     }
   } 
 
   render() {
-
     const orderFormArray = [];
     for (let formEl in this.state.controls) {
       orderFormArray.push({
@@ -307,6 +296,7 @@ class AdminConsole extends Component {
         <Button btnType="Success" >Submit</Button>
       </form>
     }
+
     return (
       <div className={classes.EntirePage}>
         {entireForm}
@@ -321,6 +311,7 @@ class AdminConsole extends Component {
 const mapPropsToState = state => {
   return {
     categories: state.adminConsole.categories,
+    nextId: state.adminConsole.nextId,
     showNotification: state.adminConsole.showNotification
   }
 }

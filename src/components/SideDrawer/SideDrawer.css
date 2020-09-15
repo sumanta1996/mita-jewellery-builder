@@ -17,8 +17,8 @@
     width: 50%;
     max-width: 70%;
     height: fit-content;
-    left: 22%;
-    top: 30%;
+    left: 25%;
+    top: 37%;
     z-index: 200;
     background-color: white;
     padding: 32px 16px;
@@ -31,8 +31,8 @@
 .Tip {
     z-index: 200;
     position: fixed;
-    left: 44%;
-    top: 28.54%;
+    left: 47%;
+    top: 35.9%;
     opacity: 0.8;
     width: 0;
     height: 0;
@@ -59,7 +59,7 @@
 }
 
 .Close {
-    transform: translateY(-2500%);
+    transform: translateY(-5000%);
 }
 
 .CloseSideDrawer {

@@ -127,9 +127,18 @@ class sideContent extends Component {
         let content = (<div style={{ zIndex: '500' }}>
             <div className={classes.SideContent}>
                 <DrawerToggleSideContent />
-                <h3 style={{ color: 'chocolate', marginTop: 10 }}><strong>{this.props.image.title}</strong></h3>
+                <h3 style={{ color: 'chocolate', marginTop: 10, fontSize: '1.75rem' }}><strong>{this.props.image.title}</strong></h3>
                 <hr />
-                <table>
+                <h3><strong>Image ID:</strong> {this.props.image.id}</h3>
+                <br />
+                <h3><strong>Description:</strong></h3>
+                <h4>{this.props.image.description}</h4>
+                <br />
+                <h3><strong>Dimensions:</strong></h3>
+                <h4>L {this.props.image.length} cm | W {this.props.image.width} cm | H {this.props.image.height} cm</h4>
+                <br />
+                <h2><strong>Price: &#x20B9; {this.props.image.price}</strong></h2>
+                {/* <table>
                     <thead></thead>
                     <tbody>
                         <tr>
@@ -158,10 +167,10 @@ class sideContent extends Component {
                         </tr>
                     </tbody>
                     <tfoot></tfoot>
-                </table>
+                </table> */}
                 <LikeButton toggle={this.props.like} likes={this.props.likes} clicked={this.likedHandler} image={this.props.image} />
                 {this.state.showModal ?
-                    <Modal show={this.state.showModal} darker modalClosed={this.modalHandler}>
+                    <Modal show={this.state.showModal} darker name modalClosed={this.modalHandler}>
                         <div className={classes.Center}>
                             <ul>
                                 <input type='text' placeholder='Enter your name'

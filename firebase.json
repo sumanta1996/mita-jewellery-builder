@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "akkshay-mita-jewellery",
     "public": "build",
     "ignore": [
       "firebase.json",

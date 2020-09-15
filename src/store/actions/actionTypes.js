@@ -5,6 +5,7 @@ export const SET_SEARCHED_VALUE = 'SET_SEARCHED_VALUE';
 export const SET_IMAGES_START = 'SET_IMAGES_START';
 export const SET_IMAGES = 'SET_IMAGES';
 export const SET_CATEGORIES = 'SET_CATEGORIES'; 
+export const SET_NEXT_ID = 'SET_NEXT_ID';
 
 export const SET_ORDERS = 'SET_ORDERS';
 export const SET_ORDERS_START = 'SET_ORDERS_START';

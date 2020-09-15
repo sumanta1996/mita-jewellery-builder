@@ -107,7 +107,7 @@ class OrderForm extends Component {
                 updatedFormElement.elementConfig = elementConfig;
                 updatedOrderForm['mobileNumber'] = updatedFormElement;
 
-                this.setState({ controls: updatedOrderForm, dataExists: true});
+                this.setState({ controls: updatedOrderForm, dataExists: true });
             }
         }
     }
@@ -153,6 +153,9 @@ class OrderForm extends Component {
 
         if (rules.required) {
             isValid = value.trim() !== '' && isValid;
+            if (value.includes('<') || value.includes('>')) {
+                isValid = false;
+            }
         }
 
         if (rules.minLength) {
@@ -197,7 +200,7 @@ class OrderForm extends Component {
         }
         this.props.saveData(orderData);
         //Set it on the basis of success 
-        if(this.props.history.location.aboutProps.clearCart) {
+        if (this.props.history.location.aboutProps.clearCart) {
             this.props.clearCart();
         }
     }
@@ -251,7 +254,7 @@ class OrderForm extends Component {
                     <hr />
                     {this.state.dataExists ? <div>
                         <p>Is this you?</p>
-                        <button onClick={() => this.setState({dataExists: false, formIsValid: true })}>Yes</button>
+                        <button onClick={() => this.setState({ dataExists: false, formIsValid: true })}>Yes</button>
                         <button onClick={this.resetData}>No</button>
                     </div> : null}
                     {orderFormArray.map(formElement => <Input key={formElement.name}

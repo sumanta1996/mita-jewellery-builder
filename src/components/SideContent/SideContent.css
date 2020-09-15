@@ -13,6 +13,18 @@
     transition: transform 0.3s ease-out;
 }
 
+.SideContent h3 {
+    font-size: 0.95rem;
+}
+
+.SideContent h4 {
+    font-size: 0.90rem;
+}
+
+.SideContent h2 {
+    font-size: 1.45rem;
+}
+
 .SideContent table {
     border-collapse: separate;
   }

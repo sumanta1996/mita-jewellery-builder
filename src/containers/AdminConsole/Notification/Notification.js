@@ -7,10 +7,16 @@ const notification = props => {
     let content = <div className={classes.Notification}>
         <h1>You are not authorized to access this feature.</h1></div>
     if (props.isAuth) {
-        const orders = [...props.orders];
-        content = <div className={classes.Notification}>
-            {orders.reverse().map(order => <EachNotification key={order.id} order={order} />)}
-        </div>
+        console.log(props.orders);
+        if (props.orders.length === 0 || !props.orders) {
+            content = <div className={classes.Notification}>
+                <h1>No orders to fetch .</h1></div>
+        } else {
+            const orders = [...props.orders];
+            content = <div className={classes.Notification}>
+                {orders.reverse().map(order => <EachNotification key={order.id} order={order} />)}
+            </div>
+        }
     }
 
     return content;

@@ -20,11 +20,11 @@ const eachNotification = props => {
 
     return (
         <div key={props.order.id} className={classes.Each}>
-            {orderDelivered ? <img className={classes.Sold} src={sold} />: null}
+            {orderDelivered ? <img className={classes.Sold} src={sold} alt='' />: null}
             <div className={classes.Images}>
                 {props.order.images.map(image =>
                     <div key={image.imageId} >
-                        <img src={image.urlArr.url1} />
+                        <img src={image.urlArr.url1} alt='' />
                         <h6><strong>&#x20B9; {image.price}</strong></h6>
                     </div>
                 )}

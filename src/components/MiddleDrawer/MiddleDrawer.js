@@ -13,7 +13,6 @@ const middleDrawer = props => {
     const middleDrawerCloseHandler = () => {
         setShowMiddleDrawer(false)
     }
-    console.log(props)
     return (
         <Auxillary>
             {props.path === '/' ? <DrawerToggle middle clicked={middleDrawerShowHandler} /> : null}

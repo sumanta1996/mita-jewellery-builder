@@ -39,10 +39,10 @@ class ContactUs extends Component {
                             <h4 className="card-title">Susmita Nandy</h4>
                             <h6>Email: susmitanandy66@gmail.com</h6>
                             <p className="card-title">Payment Options : Google Pay/ Phonepe/ Bank Transfer</p>
-                            <a target="_blank" href='https://www.instagram.com/akkshaymitajewellery/?hl=en' >
+                            <a target="noopener" href='https://www.instagram.com/akkshaymitajewellery/?hl=en' >
                                 <img src={Instagram} alt='Instagram' className={classes.Icons} />
                             </a>
-                            <a target="_blank" href='https://www.facebook.com/akkshaymita' >
+                            <a target="noopener" href='https://www.facebook.com/akkshaymita' >
                                 <img src={Facebook} alt='Instagram' className={classes.Icons} />
                             </a>
                         </div>

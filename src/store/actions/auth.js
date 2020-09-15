@@ -47,7 +47,6 @@ export const auth = (email, password) => {
                 dispatch(authCheckTime(response.data.expiresIn));
             })
             .catch(err => {
-                console.log(err);
                 dispatch(authFail(err))
             })
     }

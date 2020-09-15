@@ -5,7 +5,6 @@ const commentBox = props => {
     return (
         <div>
             {props.commentArr.map(comments => {
-                console.log(comments.comment);
                 if (comments.comment.includes('$separator')) {
                     const allComments = comments.comment.split('$separator');
                     return allComments.map((comment, index) => <div key={index} className={classes.CommentBox}>

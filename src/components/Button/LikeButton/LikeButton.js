@@ -19,8 +19,9 @@ class LikeButton extends Component {
             if (image.imageId === this.props.image.imageId) {
                 flag = true;
             }
+            return null;
         })
-        flag ? this.setState({ addToCart: true }) : null;
+        if(flag) this.setState({ addToCart: true });
     }
 
     showLikedPeopleHandler = () => {
@@ -37,7 +38,6 @@ class LikeButton extends Component {
     }
 
     buyNowHandler = () => {
-        console.log(this.props);
         const images = [];
         images.push(this.props.image);
         this.props.history.push({

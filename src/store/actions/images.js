@@ -31,8 +31,6 @@ export const fetchImages = (categoryValue, searchedValue) => {
         .then(response => {
             const images = [];
             for(let res in response.data) {
-                //console.log('[Each iteration]',res);
-                console.log(searchedValue)
                 if(response.data[res].title.includes(searchedValue)) {
                     images.push({
                         imageId: res,

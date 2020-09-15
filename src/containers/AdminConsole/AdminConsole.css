@@ -35,10 +35,6 @@
     text-align: center;
 }
 
-.EntirePage p {
-    margin-top: -50px;
-}
-
 @media(min-width: 600px) {
     .AdminConsole {
         width: 500px;
@@ -54,5 +50,11 @@
 
     .EntirePage p {
         margin-top: none;
+    }
+}
+
+@media(max-width: 500px) {
+    .EntirePage p {
+        margin-top: -50px;
     }
 }

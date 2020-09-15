@@ -38,7 +38,6 @@ const homepage = React.memo(props => {
 
     const handleScroll = () => {
         if (document.documentElement.offsetHeight - (window.innerHeight + document.documentElement.scrollTop) > 10) return;
-        console.log('Fetching more items');
         pagination = pagination + 1;
         setIsFetching(true);
     }
@@ -78,7 +77,6 @@ const homepage = React.memo(props => {
     const imageClickedHandler = (image) => {
         let size = 0;
         for (let key in image.urlArr) {
-            //console.log(image.urlArr[key]);
             if (image.urlArr[key] !== '') {
                 size = size + 1;
             }
@@ -131,7 +129,7 @@ const homepage = React.memo(props => {
             <SearchButton />
             <div className='row' style={{
                 marginTop: window.innerWidth < 500 ? '150px' : '100px',
-                marginLeft: window.innerWidth < 500 ? '5%' : '6.5%',
+                marginLeft: window.innerWidth < 500 ? '10%' : '6.5%',
             }}>
                 {content}
                 {imageContent}

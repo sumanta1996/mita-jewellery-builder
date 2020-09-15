@@ -6,14 +6,14 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import Auth from './containers/Auth/Auth';
 import { connect } from 'react-redux';
 import Logout from './containers/Logout/Logout';
-import ContactUs from './containers/ContactUs/ContactUs';
+import AdminConsole from './containers/AdminConsole/AdminConsole';
 import Notification from './containers/AdminConsole/Notification/Notification';
 
 const app = props => {
 
-  const AdminConsole = React.lazy(() => {
+ /*  const AdminConsole = React.lazy(() => {
     return import('./containers/AdminConsole/AdminConsole');
-  });
+  }); */
 
   const Orders = React.lazy(() => {
     return import('./containers/Orders/Orders')
@@ -21,6 +21,10 @@ const app = props => {
 
   const OrderForm = React.lazy(() => {
     return import('./components/Cart/OrderForm/OrderForm')
+  });
+
+  const ContactUs = React.lazy(() => {
+    return import('./containers/ContactUs/ContactUs')
   });
 
   return (
